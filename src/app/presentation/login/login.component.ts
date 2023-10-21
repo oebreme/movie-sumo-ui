@@ -8,7 +8,7 @@ import { Router } from "@angular/router";
 })
 export class LoginComponent {
 
-  constructor(private readonly router: Router) {
+  constructor(readonly router: Router) {
   }
 
   log() {
