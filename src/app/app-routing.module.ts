@@ -9,8 +9,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'dashboard', component: DashboardComponent },
-
-  // TODO: change back to '/dashboard' or smth when done building login
   { path: '',   redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent }
 ];
