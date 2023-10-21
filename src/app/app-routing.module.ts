@@ -4,11 +4,13 @@ import { LoginComponent } from "./presentation/login/login.component";
 import { DashboardComponent } from "./presentation/dashboard/dashboard.component";
 import { NotFoundComponent } from "./presentation/not-found/not-found.component";
 import { SignUpComponent } from "./presentation/sign-up/sign-up.component";
+import { ListComponent } from "./presentation/list/list.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'list', component: ListComponent },
   { path: '',   redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent }
 ];
