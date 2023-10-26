@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "pregenerate:api": "node download-contract.js",
-    "generate:api": "openapi-generator-cli generate --global-property models -g typescript-angular -i ./src/api/dings.yaml -o ./src/app/rest/generated"
+    "generate:api": "openapi-generator-cli generate --global-property models -g typescript-angular -i src/api/api.yaml -o ./src/app/rest/generated"
   },
   "private": true,
   "dependencies": {
