@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-
+  favorites?: string[] = ["hi"];
+  idOfList?: number = 10;
+  listName: string = "Favorites";
+  savedMovieCount: number = 31;
 }

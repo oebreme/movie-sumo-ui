@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'home', component: HomeComponent },
   { path: 'list', component: ListComponent },
+  { path: 'list/:id', component: ListComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent }
 ];
