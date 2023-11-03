@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
 import { MovieMapperService } from './movie-mapper.service';
-import {MovieDto} from "../delivery/rest/movie.dto";
-import {Movie, MoviePreview} from "../domain/movie.model";
+import { MovieDto } from "../delivery/rest/movie.dto";
+import { Movie, MoviePreview } from "../domain/movie.model";
 
 describe('MovieMapperService', () => {
   let service: MovieMapperService;
