@@ -69,7 +69,6 @@ describe('MovieMapperService', () => {
 
       const result = service.mapFromApi(dto);
 
-
       expect(result).toStrictEqual(expected);
     });
 
@@ -91,7 +90,6 @@ describe('MovieMapperService', () => {
 
       const result = service.mapFromApi(dto);
 
-
       expect(result).toStrictEqual(expected);
     });
 
@@ -111,7 +109,6 @@ describe('MovieMapperService', () => {
       };
 
       const result = service.mapFromApi(dto);
-
 
       expect(result).toStrictEqual(expected);
     });
