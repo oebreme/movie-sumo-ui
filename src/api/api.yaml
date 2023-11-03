@@ -12,11 +12,11 @@ tags:
     description: Everything about Movies
 
 paths:
-  /movie/{movieId}:
+  /movies/{movieId}:
     get:
       tags:
         - Movie
-      summary: find movie by Id
+      summary: get a movie by Id
       description: returns a single Movie
       parameters:
         - name: movieId
@@ -37,15 +37,107 @@ paths:
           description: invalid Id supplied
         '404':
           description: movie not found
+  /movies/search/{queryTerm}/{page}:
+    get:
+      tags:
+        - Movie
+      summary: search for a movie by a given String
+      description: returns multiple Movies which match to some extend with the provided String
+      parameters:
+        - name: queryTerm
+          in: path
+          description: provided String to search for
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: path
+          description: page number to determine which Movies to fetch
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Movie'
+        '400':
+          description: invalid Id supplied
+        '404':
+          description: movie not found
 components:
   schemas:
     Movie:
       type: object
+      required:
+        - id
+        - title
+        - imageUrl
+        - genres
+        - details
       properties:
         id:
           type: integer
           format: int64
-          example: 7051
+          example: 872585
         title:
           type: string
-          example: Departed
+          example: Oppenheimer
+        imageUrl:
+          type: string
+          example: 'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg'
+        genres:
+          type: array
+          items:
+            type: string
+            example: "Drama"
+        details:
+          $ref: '#/components/schemas/MovieDetails'
+
+    MovieDetails:
+      type: object
+      required:
+        - runtime
+        - releaseDate
+        - overview
+        - availableOn
+      properties:
+        runtime:
+          type: integer
+          format: int32
+          example: 181
+        releaseDate:
+          type: string
+          example: 2023-07-19
+        overview:
+          type: string
+          example: "The story of J. Robert Oppenheimer’s role in the development of the atomic bomb during World War II."
+        availableOn:
+          type: array
+          items:
+            $ref: '#/components/schemas/MovieProviders'
+
+    MovieProviders:
+      type: object
+      required:
+        - name
+        - logoUrl
+        - displayOrder
+      properties:
+        name:
+          type: string
+          example: Apple TV
+        logoUrl:
+          type: string
+          example: https://image.tmdb.org/t/p/w500/peURlLlr8jggOwK53fJ5wdQl05y.jpg
+        displayOrder:
+          type: integer
+          format: int32
+          description: order for provider relevancy - "1" being most relevant provider
+          example: 4
+
