@@ -79,7 +79,6 @@ components:
         - title
         - imageUrl
         - genres
-        - details
       properties:
         id:
           type: integer
@@ -120,9 +119,9 @@ components:
         availableOn:
           type: array
           items:
-            $ref: '#/components/schemas/MovieProviders'
+            $ref: '#/components/schemas/MovieProvider'
 
-    MovieProviders:
+    MovieProvider:
       type: object
       required:
         - name
