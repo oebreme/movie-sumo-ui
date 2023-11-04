@@ -5,11 +5,13 @@ import { HomeComponent } from "./presentation/home/home.component";
 import { NotFoundComponent } from "./presentation/not-found/not-found.component";
 import { SignUpComponent } from "./presentation/sign-up/sign-up.component";
 import { ListComponent } from "./presentation/list/list.component";
+import { FavoritesComponent } from "./presentation/favorites/favorites.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'favorites', component: FavoritesComponent },
   { path: 'list', component: ListComponent },
   { path: 'list/:id', component: ListComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
