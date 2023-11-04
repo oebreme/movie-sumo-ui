@@ -6,9 +6,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './presentation/login/login.component';
 import { HomeComponent } from './presentation/home/home.component';
 import { NotFoundComponent } from './presentation/not-found/not-found.component';
-import { SignUpComponent } from './presentation/sign-up/sign-up.component';
 import { ListComponent } from './presentation/list/list.component';
 import { FavoritesComponent } from './presentation/favorites/favorites.component';
+import { AuthModule } from "@auth0/auth0-angular";
 
 @NgModule({
   declarations: [
@@ -16,13 +16,19 @@ import { FavoritesComponent } from './presentation/favorites/favorites.component
     LoginComponent,
     HomeComponent,
     NotFoundComponent,
-    SignUpComponent,
     ListComponent,
     FavoritesComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AuthModule.forRoot({
+      domain: 'dev-oebreme.eu.auth0.com',
+      clientId: 'Dcq3p7TmL4VRhAeSWZFDoXeqZoi0knIp',
+      authorizationParams: {
+        redirect_uri: window.location.origin
+      }
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
