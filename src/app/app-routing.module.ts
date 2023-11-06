@@ -35,10 +35,12 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: '/home',
-    pathMatch: 'full',
-    canActivate: [AuthGuard]
+    pathMatch: 'full'
   },
-  { path: '**', component: NotFoundComponent }
+  {
+    path: '**',
+    component: NotFoundComponent
+  }
 ];
 
 @NgModule({
