@@ -9,6 +9,8 @@ import { NotFoundComponent } from './presentation/not-found/not-found.component'
 import { ListComponent } from './presentation/list/list.component';
 import { FavoritesComponent } from './presentation/favorites/favorites.component';
 import { AuthModule } from "@auth0/auth0-angular";
+import { AddComponent } from './presentation/add/add.component';
+import { SearchComponent } from './presentation/search/search.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { AuthModule } from "@auth0/auth0-angular";
     HomeComponent,
     NotFoundComponent,
     ListComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    AddComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
