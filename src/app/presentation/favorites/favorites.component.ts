@@ -17,4 +17,8 @@ export class FavoritesComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
+  debug(): void {
+    console.log("clicked");
+  }
 }
