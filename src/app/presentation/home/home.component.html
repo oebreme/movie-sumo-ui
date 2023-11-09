@@ -1,10 +1,16 @@
 <main class="bg-gray-800 w-full h-full flex flex-col">
-  <h1 class="text-4xl text-white"> Home </h1>
+  <div class="flex items-center mt-6">
+    <div class="ml-4 avatar">
+      <div class="w-8 h-8 rounded-full">
+        <img src="https://thispersondoesnotexist.com/"/>
+      </div>
+    </div>
+    <h1 class="text-3xl font-semibold text-white ml-2 flex"> Home </h1></div>
 
   <div class="my-4"></div>
 
   <ng-container *ngIf="favorites">
-    <div routerLink="/favorites" class="flex flex-row bg-white border shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]">
+    <div routerLink="/favorites" class="flex flex-row bg-white mx-2 border shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]">
 
       <div class="bg-amber-300 flex self-center min-w-[4rem] min-h-[4rem] mx-2">
       </div>
