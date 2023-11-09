@@ -1,10 +1,31 @@
 <main class="bg-gray-800 w-full h-full flex flex-col">
-  <h1 class="text-4xl text-white"> Favorites </h1>
+  <div class="flex items-center mt-6">
+    <div class="ml-4 avatar">
+      <div class="w-8 h-8 rounded-full">
+        <img src="https://thispersondoesnotexist.com/"/>
+      </div>
+    </div>
+    <h1 class="text-3xl font-semibold text-white ml-2 flex"> Favorites </h1></div>
 
   <div class="my-4"></div>
-  <div class="flex flex-row">
-    <span class="text-white mx-2">Gespeicherte Filme: {{ savedMovieCount }}</span>
-  </div>
+
+  <span class="text-white mx-2">{{ savedMovieCount }} movies</span>
+
+  <button routerLink="add" (click)="debug()" class="mt-6 mx-2">
+    <div class="card card-side bg-base-100 shadow-xl flex">
+      <div class="ml-4 self-center">
+        <svg xmlns="http://www.w3.org/2000/svg" height="56" viewBox="0 -960 960 960" width="56" fill="currentColor"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
+      </div>
+
+
+      <div class="card-body ">
+        <h2 class="card-title">Add movies</h2>
+      </div>
+
+
+    </div>
+  </button>
+
 
 
 </main>
