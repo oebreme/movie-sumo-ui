@@ -13,9 +13,38 @@
               d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
       </svg>
     </div>
-    <input type="text" placeholder="What do you want to watch?" class="text-sm px-12 input input-bordered w-full max-w-[90vw] min-w-[90vw]"/>
+    <input
+      type="search"
+      placeholder="What do you want to watch?"
+      class="text-sm px-12 input input-bordered w-full max-w-[90vw] min-w-[90vw]"
+      (input)="inputSubject.next()"
+      [(ngModel)]="userInput"
+    />
   </div>
 </div>
+<div class="mb-8"></div>
 
+  <span class="loading loading-spinner loading-lg text-info"></span>
+
+<ng-container *ngIf="list !== undefined">
+  <div *ngFor="let result of list.results" class="flex w-full items-center justify-center">
+
+
+    <div class="card w-96 bg-base-100 shadow-xl image-full w-full max-w-[90vw] min-w-[90vw] mb-8">
+      <figure >
+        <img [src]=buildImgUrl(result.backdrop_path) alt="Movies" />
+      </figure>
+      <div class="card-body">
+        <h2 class="card-title">{{result.title}}</h2>
+        <p>{{result.overview}}</p>
+        <div class="card-actions justify-end">
+          <button class="btn btn-primary">Add to Favorites</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</ng-container>
 
 </main>

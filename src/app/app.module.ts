@@ -11,6 +11,8 @@ import { FavoritesComponent } from './presentation/favorites/favorites.component
 import { AuthModule } from "@auth0/auth0-angular";
 import { AddComponent } from './presentation/add/add.component';
 import { SearchComponent } from './presentation/search/search.component';
+import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -33,8 +35,11 @@ import { SearchComponent } from './presentation/search/search.component';
         redirect_uri: window.location.origin
       }
     }),
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
