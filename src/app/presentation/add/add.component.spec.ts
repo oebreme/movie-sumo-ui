@@ -1,18 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AddComponent } from './add.component';
+import { render } from "@testing-library/angular";
+import { HttpClientModule } from "@angular/common/http";
 
 describe('AddComponent', () => {
   let component: AddComponent;
-  let fixture: ComponentFixture<AddComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [AddComponent]
+  beforeEach(async () => {
+    const renderResult = await render(AddComponent, {
+      imports: [
+        HttpClientModule
+      ]
     });
-    fixture = TestBed.createComponent(AddComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = renderResult.fixture.componentInstance;
   });
 
   it('should create', () => {
