@@ -1,18 +1,12 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ListComponent } from './list.component';
+import { render } from "@testing-library/angular";
 
 describe('ListComponent', () => {
   let component: ListComponent;
-  let fixture: ComponentFixture<ListComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [ListComponent]
-    });
-    fixture = TestBed.createComponent(ListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(async() => {
+    const renderResult = await render(ListComponent);
+    component = renderResult.fixture.componentInstance;
   });
 
   it('should create', () => {
