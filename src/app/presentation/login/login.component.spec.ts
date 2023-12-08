@@ -1,18 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LoginComponent } from './login.component';
+import { render } from "@testing-library/angular";
+import { AuthModuleMock } from "../../../mock/test/auth-mock.module";
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [LoginComponent]
+  beforeEach(async() => {
+    const renderResult = await render(LoginComponent, {
+      imports: [
+        AuthModuleMock.forRoot(),
+      ]
     });
-    fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = renderResult.fixture.componentInstance;
   });
 
   it('should create', () => {
