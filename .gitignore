@@ -42,4 +42,4 @@ testem.log
 Thumbs.db
 
 # OpenAPI
-./src/app/rest/generated
+./src/app/delivery/rest/generated
