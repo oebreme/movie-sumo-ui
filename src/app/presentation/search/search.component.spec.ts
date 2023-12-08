@@ -1,21 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SearchComponent } from './search.component';
+import { render } from "@testing-library/angular";
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
-  let fixture: ComponentFixture<SearchComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [SearchComponent]
-    });
-    fixture = TestBed.createComponent(SearchComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(async() => {
+    const renderResult = await render(SearchComponent);
+    component = renderResult.fixture.componentInstance;
   });
 
-  it('should create', () => {
+  test('should create', () => {
     expect(component).toBeTruthy();
   });
 });
