@@ -8,6 +8,7 @@ import { FavoritesComponent } from "./presentation/favorites/favorites.component
 import { AuthGuard } from "@auth0/auth0-angular";
 import { AddComponent } from "./presentation/add/add.component";
 import { SearchComponent } from "./presentation/search/search.component";
+import {LibraryComponent} from "./presentation/library/library.component";
 
 const routes: Routes = [
   {
@@ -42,6 +43,11 @@ const routes: Routes = [
   {
     path: 'list/:id',
     component: ListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'library',
+    component: LibraryComponent,
     canActivate: [AuthGuard]
   },
   {
