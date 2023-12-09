@@ -12,12 +12,16 @@ export class AddComponent implements OnInit {
   userInput: string = '';
   inputSubject: Subject<void> = new Subject<void>();
   list: any;
+  isLoading: boolean = false;
 
   constructor(private readonly http: HttpClient) {
   }
 
   ngOnInit(): void {
     console.log('ngOnInit called at ~~~ ' + new Date().toLocaleString());
+    this.inputSubject.subscribe(() => {
+      this.isLoading = true
+    });
     this.inputSubject.pipe(debounceTime(500))
       .subscribe(() => {
       console.log('called API ~~~ ' + new Date().toLocaleString());
@@ -37,6 +41,7 @@ export class AddComponent implements OnInit {
     this.http.get('https://api.themoviedb.org/3/search/movie?query=' + this.userInput + '&include_adult=false&language=en-US&page=1',
       {headers: headers}, ).subscribe((data) => {
         this.list = data;
+      this.isLoading = false;
       console.log(data);
     });
   }

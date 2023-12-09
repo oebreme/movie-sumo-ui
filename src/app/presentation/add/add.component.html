@@ -1,3 +1,9 @@
+<!-- TODO
+      - Searchbar kann mehrfach wiederverwendet werden und soll daher eine standalone component werden
+      - Backdrop bei Ergebnissen sollte stretchen oder besser die kachel ausfüllen
+      - code in Add-Component aufräumen/auslagern
+-->
+
 <main class="bg-gray-800 w-full h-full flex flex-col">
   <div class="flex items-center mt-6">
     <h1 class="text-3xl font-semibold text-white ml-4 flex"> Add Movie </h1></div>
@@ -24,7 +30,11 @@
 </div>
 <div class="mb-8"></div>
 
-  <span class="loading loading-spinner loading-lg text-info"></span>
+  <ng-container *ngIf="isLoading">
+    <div class="flex flex-col justify-center items-center">
+      <span class="loading loading-spinner text-info" style="width: 5rem"></span>
+    </div>
+  </ng-container>
 
 <ng-container *ngIf="list !== undefined">
   <div *ngFor="let result of list.results" class="flex w-full items-center justify-center">
@@ -32,7 +42,7 @@
 
     <div class="card w-96 bg-base-100 shadow-xl image-full w-full max-w-[90vw] min-w-[90vw] mb-8">
       <figure >
-        <img [src]=buildImgUrl(result.backdrop_path) alt="Movies" />
+        <img [src]=buildImgUrl(result.backdrop_path) alt="Movies" style="background-size: cover" />
       </figure>
       <div class="card-body">
         <h2 class="card-title">{{result.title}}</h2>
@@ -43,6 +53,15 @@
       </div>
     </div>
 
+  </div>
+
+</ng-container>
+
+<ng-container *ngIf="list !== undefined && list.results.length === 0">
+  <div class="flex flex-col justify-center items-center">
+    <h1 class="text-3xl font-semibold"> Keine Suchergebnisse für "{{userInput}}" </h1>
+    <p>Bitte achte darauf, dass du alle Wörter richtig geschrieben hast,
+      oder versuch es mit weniger oder anderen Suchbegriffen.</p>
   </div>
 
 </ng-container>
