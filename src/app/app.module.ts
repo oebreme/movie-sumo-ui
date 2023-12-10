@@ -14,6 +14,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { HomeModule } from "./presentation/home/home.module";
 import { SearchModule } from "./presentation/search/search.module";
 import { LibraryModule } from "./presentation/library/library.module";
+import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { LibraryModule } from "./presentation/library/library.module";
     HomeModule,
     SearchModule,
     LibraryModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
