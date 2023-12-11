@@ -1,4 +1,8 @@
 export interface SearchResultResponseDto {
+    results: SingleSearchResultResponseDto[],
+}
+
+declare interface SingleSearchResultResponseDto {
     "id": number,
     "title": string,
     "release_date": string,
