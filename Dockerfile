@@ -10,6 +10,7 @@ RUN npm i && npm run build
 FROM nginx:stable-alpine as run
 RUN rm -rf /usr/share/nginx/html/*
 ENV TZ=Europe/Berlin
+ENV TMDB_API_TOKEN=${TMDB_API_TOKEN}
 RUN apk add --no-cache tzdata && cp /usr/share/zoneinfo/$TZ /etc/localtime
 COPY --from=build /app/dist/movie-sumo-ui /usr/share/nginx/html
 COPY --from=build /app/default.conf /etc/nginx/conf.d/default.conf

@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  API_TOKEN: node.['TMDB_API_TOKEN'],
+  //API_TOKEN: process.env['TMDB_API_TOKEN'],
+  TEST_URL: process.env['TEST_URL'],
 };
 
 /*
