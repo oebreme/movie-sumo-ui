@@ -10,6 +10,9 @@ import { TMDB_DEFAULT_LANGUAGE, TMDB_TOKEN } from "../config/tmdb.config";
 @Injectable()
 export class SearchService implements SearchApi {
 
+  /**
+   * used as a fallback when no page is provided
+   */
   readonly FIRST_PAGE: string = '1';
   readonly endpoint = SearchApiEndpoint.VALUE;
 
