@@ -5,7 +5,6 @@ import { map, Observable } from "rxjs";
 import { SearchResult } from "../domain/search-result.model";
 import { SearchResultResponseDto } from "./search-result.dto";
 import { SearchResultMapper } from "../data/search-result-mapper.service";
-import {environment} from "../../../environments/environment";
 
 @Injectable()
 export class SearchService implements SearchApi {
@@ -20,11 +19,11 @@ export class SearchService implements SearchApi {
 
   public getSearchResult(searchTerm: string, language?: string, page?: string): Observable<SearchResult[]> {
     let headers = new HttpHeaders();
-    headers = headers.set('Authorization', 'Bearer TODO.TODO.TODO')
+    headers = headers.set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZmRjMWEzZDM1MTIyYWE3MjgyZmVlNTlmNmQwOTAzNiIsInN1YiI6IjY1M2NkOTVmNzE5YWViMDBmZTNjNzY4YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QK-5wspCxMBkDCnQj5elVym5CYN_rOBDg_w_-UYB2HY')
     headers = headers.append('Content-Type', 'application/json');
 
     return this.http.get<SearchResultResponseDto>(
-        `${environment.TEST_URL}` + searchTerm + '&include_adult=false&language=' + this.setGivenOrFallbackLanguage(language) + '&page=' + this.setGivenOrFallbackPage(page),
+        `${this.endpoint}` + searchTerm + '&include_adult=false&language=' + this.setGivenOrFallbackLanguage(language) + '&page=' + this.setGivenOrFallbackPage(page),
       {headers: headers})
         .pipe(map(response => this.mapper.mapFromApi(response)));
   }
