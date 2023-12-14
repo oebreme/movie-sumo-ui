@@ -35,7 +35,7 @@
       </figure>
       <div class="card-body">
         <h2 class="card-title">{{ el.title }}</h2>
-        <p>{{ el.overview }}</p>
+        <p>{{ el.overview | truncate:16 }}</p>
         <div class="card-actions justify-end">
           <button class="btn btn-primary">Add to Favorites</button>
         </div>
