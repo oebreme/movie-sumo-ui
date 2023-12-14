@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { SearchResult } from "../../shared/domain/search-result.model";
-import { SearchService } from "../../shared/delivery/search.service";
+import {Component, Input} from '@angular/core';
+import { SearchResult } from "../../domain/search-result.model";
+import { SearchService } from "../../delivery/search.service";
 
 @Component({
   selector: 'app-add',
@@ -8,6 +8,8 @@ import { SearchService } from "../../shared/delivery/search.service";
   styleUrls: ['./add.component.scss']
 })
 export class AddComponent {
+  @Input() listRef?: string;
+
   whichList?: string = 'favorites';
   searchResults?: SearchResult[];
 
