@@ -1,4 +1,10 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output
+} from '@angular/core';
+import { SearchResult } from "../../domain/search-result.model";
 
 @Component({
   selector: 'app-search-result',
@@ -6,9 +12,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./search-result.component.scss']
 })
 export class SearchResultComponent {
+  @Input() movie!: SearchResult;
+  @Output() addToList = new EventEmitter<number>();
 
-  // TODO:
-  //  - Die Idee wäre: diese Comp soll über Input ein objekt erhalten mit allen notwendig ingos :D und einfach doof darstellen
-  //  - Dazu muss es aber noch ein Output geben, WEIL man einen Button hat, der den Film zu einer Liste hinzufügen soll
-
+  public onClick(): void {
+    this.addToList.emit(this.movie.id);
+  }
 }

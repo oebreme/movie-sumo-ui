@@ -14,7 +14,8 @@ import { TruncatePipe } from './data/truncate.pipe';
     TruncatePipe
   ],
   exports: [
-    SearchBarComponent
+    SearchBarComponent,
+    SearchResultComponent
   ],
   imports: [
     CommonModule,

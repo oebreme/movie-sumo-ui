@@ -11,12 +11,13 @@
       type="search"
       placeholder="What do you want to watch?"
       class="text-sm px-12 input input-bordered w-full max-w-[90vw] min-w-[90vw]"
-      (input)="inputSubject.next()"
-      [(ngModel)]="userInput"
+      (input)="inputChanged.next()"
+      [(ngModel)]="searchTerm"
     />
   </div>
 </div>
 
+<!--
 <div class="mb-8"></div>
 
 <ng-container *ngIf="isLoading">
@@ -25,26 +26,7 @@
   </div>
 </ng-container>
 
-<ng-container *ngIf="result !== undefined">
-  <div *ngFor="let el of result" class="flex w-full items-center justify-center">
 
-
-    <div class="card w-96 bg-base-100 shadow-xl image-full w-full max-w-[90vw] min-w-[90vw] mb-8">
-      <figure >
-        <img [src]="el.imageUrl" alt="Movies" style="background-size: cover" />
-      </figure>
-      <div class="card-body">
-        <h2 class="card-title">{{ el.title }}</h2>
-        <p>{{ el.overview | truncate:16 }}</p>
-        <div class="card-actions justify-end">
-          <button class="btn btn-primary">Add to Favorites</button>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-</ng-container>
 
 <ng-container *ngIf="result !== undefined && result?.length === 0">
   <div class="flex flex-col justify-center items-center">
@@ -54,3 +36,4 @@
   </div>
 
 </ng-container>
+-->
