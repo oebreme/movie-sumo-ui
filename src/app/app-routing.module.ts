@@ -31,7 +31,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'favorites/add',
+    path: ':listRef/add',
     component: AddComponent,
     canActivate: [AuthGuard]
   },
@@ -41,8 +41,13 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'list/:id',
+    path: 'list/:listRef',
     component: ListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'list/:listRef/add',
+    component: AddComponent,
     canActivate: [AuthGuard]
   },
   {

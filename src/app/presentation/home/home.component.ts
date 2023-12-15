@@ -6,9 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  userId?: 301142;
-  favorites?: string[] = ["hi"];
-  idOfList?: number = 10;
+
   listName: string = "Favorites";
   savedMovieCount: number = 31;
+
+
+  list2Name: string = "Liste 5";
 }

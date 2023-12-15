@@ -1,19 +1,25 @@
-import {Component, Input} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SearchResult } from "../../domain/search-result.model";
 import { SearchService } from "../../delivery/search.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss']
 })
-export class AddComponent {
-  @Input() listRef?: string;
-
-  whichList?: string = 'favorites';
+export class AddComponent implements OnInit {
+  listRef?: string;
   searchResults?: SearchResult[];
 
-  constructor(private readonly searchService: SearchService) {
+  constructor(private readonly searchService: SearchService,
+              private readonly route: ActivatedRoute) {
+  }
+
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.listRef = params['listRef'];
+    });
   }
 
   handleGivenSearchTerm(searchTerm: string): void {
@@ -23,6 +29,6 @@ export class AddComponent {
   }
 
   handleAddToFavorites(movieId: number): void {
-    console.log(`Add "${movieId}" to ${this.whichList} recognized by Parent-Comp`);
+    console.log(`Add "${movieId}" to "${this.listRef}" recognized by Parent-Comp`);
   }
 }

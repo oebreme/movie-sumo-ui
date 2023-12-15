@@ -1,22 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.scss']
 })
-export class FavoritesComponent implements OnInit {
+export class FavoritesComponent {
 
-  userId?: number = 301142;
-  favorites?: string[] = ["hi"];
   savedMovieCount: number = 31;
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-
-  }
 
   debug(): void {
     console.log("clicked");

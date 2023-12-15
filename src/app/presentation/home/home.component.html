@@ -9,8 +9,26 @@
 
   <div class="my-4"></div>
 
-  <ng-container *ngIf="favorites">
+  <ng-container *ngIf="true">
     <div routerLink="/favorites" class="flex flex-row bg-white mx-2 border shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]">
+
+      <div class="bg-amber-300 flex self-center min-w-[4rem] min-h-[4rem] mx-2">
+      </div>
+
+      <div class="py-4 pl-2">
+        <h3 class="text-2xl font-bold text-gray-800 dark:text-white">
+          {{ listName }}
+        </h3>
+        <p class="mt-1 text-xs text-gray-500 dark:text-gray-500">
+          {{ savedMovieCount }}
+        </p>
+      </div>
+
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="true">
+    <div routerLink="/list" class="flex flex-row bg-white mx-2 border shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]">
 
       <div class="bg-amber-300 flex self-center min-w-[4rem] min-h-[4rem] mx-2">
       </div>
