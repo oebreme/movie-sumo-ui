@@ -6,7 +6,5 @@ export interface SearchApi {
 }
 
 export enum SearchApiEndpoint {
-  VALUE = 'https://api.themoviedb.org/3/search/movie?query=',
-  FALLBACK_LANGUAGE = 'de',
-  FALLBACK_PAGE = '1'
+  VALUE = 'https://api.themoviedb.org/3/search/movie?query='
 }

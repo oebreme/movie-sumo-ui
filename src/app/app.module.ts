@@ -8,7 +8,7 @@ import { NotFoundComponent } from './presentation/not-found/not-found.component'
 import { ListComponent } from './presentation/list/list.component';
 import { FavoritesComponent } from './presentation/favorites/favorites.component';
 import { AuthModule } from "@auth0/auth0-angular";
-import { AddComponent } from './presentation/add/add.component';
+import { AddComponent } from './shared/presentation/add/add.component';
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { HomeModule } from "./presentation/home/home.module";

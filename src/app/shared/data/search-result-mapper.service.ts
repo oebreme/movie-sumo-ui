@@ -17,6 +17,8 @@ export class SearchResultMapper {
     });
   }
 
+  // TODO
+  //  - some results dont have a image-ressource and instead return 'null'
   private buildImgUrl(imgPath: string): string {
     return "https://image.tmdb.org/t/p/w500/" + imgPath;
   }

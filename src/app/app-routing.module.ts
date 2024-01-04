@@ -6,9 +6,9 @@ import { NotFoundComponent } from "./presentation/not-found/not-found.component"
 import { ListComponent } from "./presentation/list/list.component";
 import { FavoritesComponent } from "./presentation/favorites/favorites.component";
 import { AuthGuard } from "@auth0/auth0-angular";
-import { AddComponent } from "./presentation/add/add.component";
+import { AddComponent } from "./shared/presentation/add/add.component";
 import { SearchComponent } from "./presentation/search/search.component";
-import {LibraryComponent} from "./presentation/library/library.component";
+import { LibraryComponent } from "./presentation/library/library.component";
 
 const routes: Routes = [
   {
@@ -31,7 +31,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'favorites/add',
+    path: ':listRef/add',
     component: AddComponent,
     canActivate: [AuthGuard]
   },
@@ -41,8 +41,13 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'list/:id',
+    path: 'list/:listRef',
     component: ListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'list/:listRef/add',
+    component: AddComponent,
     canActivate: [AuthGuard]
   },
   {

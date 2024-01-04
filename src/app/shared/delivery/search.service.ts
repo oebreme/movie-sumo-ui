@@ -1,26 +1,29 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { SearchApi, SearchApiEndpoint } from "./search-api";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { map, Observable } from "rxjs";
 import { SearchResult } from "../domain/search-result.model";
 import { SearchResultResponseDto } from "./search-result.dto";
 import { SearchResultMapper } from "../data/search-result-mapper.service";
+import { TMDB_DEFAULT_LANGUAGE, TMDB_TOKEN } from "../config/tmdb.config";
 
 @Injectable()
 export class SearchService implements SearchApi {
 
-  readonly fallbackLanguage = SearchApiEndpoint.FALLBACK_LANGUAGE;
-  readonly fallbackPage = SearchApiEndpoint.FALLBACK_PAGE;
+  /**
+   * used as a fallback when no page is provided
+   */
+  readonly FIRST_PAGE: string = '1';
   readonly endpoint = SearchApiEndpoint.VALUE;
 
   constructor(private readonly http: HttpClient,
-              private readonly mapper: SearchResultMapper) {
+              private readonly mapper: SearchResultMapper,
+              @Inject(TMDB_DEFAULT_LANGUAGE) private readonly defaultLanguage: string,
+              @Inject(TMDB_TOKEN) private readonly authToken: string) {
   }
 
   public getSearchResult(searchTerm: string, language?: string, page?: string): Observable<SearchResult[]> {
-    let headers = new HttpHeaders();
-    headers = headers.set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZmRjMWEzZDM1MTIyYWE3MjgyZmVlNTlmNmQwOTAzNiIsInN1YiI6IjY1M2NkOTVmNzE5YWViMDBmZTNjNzY4YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QK-5wspCxMBkDCnQj5elVym5CYN_rOBDg_w_-UYB2HY')
-    headers = headers.append('Content-Type', 'application/json');
+    const headers = this.buildHttpHeader();
 
     return this.http.get<SearchResultResponseDto>(
         `${this.endpoint}` + searchTerm + '&include_adult=false&language=' + this.setGivenOrFallbackLanguage(language) + '&page=' + this.setGivenOrFallbackPage(page),
@@ -28,11 +31,17 @@ export class SearchService implements SearchApi {
         .pipe(map(response => this.mapper.mapFromApi(response)));
   }
 
+  private buildHttpHeader(): HttpHeaders {
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', `${this.authToken}`)
+    return headers.append('Content-Type', 'application/json');
+  }
+
   private setGivenOrFallbackLanguage(language: string | undefined): string {
     if (language !== undefined) {
       return language;
     } else {
-      return this.fallbackLanguage;
+      return this.defaultLanguage;
     }
   }
 
@@ -40,7 +49,7 @@ export class SearchService implements SearchApi {
     if (page !== undefined) {
       return page;
     } else {
-      return this.fallbackPage;
+      return this.FIRST_PAGE;
     }
   }
 }

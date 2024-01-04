@@ -4,13 +4,18 @@ import { SearchBarComponent } from './presentation/search-bar/search-bar.compone
 import { FormsModule } from "@angular/forms";
 import { SearchService } from "./delivery/search.service";
 import { SearchResultMapper } from "./data/search-result-mapper.service";
+import { SearchResultComponent } from './presentation/search-result/search-result.component';
+import { TruncatePipe } from './data/truncate.pipe';
 
 @NgModule({
   declarations: [
-    SearchBarComponent
+    SearchBarComponent,
+    SearchResultComponent,
+    TruncatePipe
   ],
   exports: [
-    SearchBarComponent
+    SearchBarComponent,
+    SearchResultComponent
   ],
   imports: [
     CommonModule,

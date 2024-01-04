@@ -7,6 +7,9 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
+
+  listRef: string = '51211';
+  blob = [`${this.listRef}` + '/add']
   constructor(private readonly route: ActivatedRoute) {
   }
 
