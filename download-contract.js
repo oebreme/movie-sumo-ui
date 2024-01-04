@@ -3,7 +3,7 @@ const https = require('follow-redirects').https;
 
 const GITHUB = 'raw.githubusercontent.com';
 const BASE_PATH = '/oebreme/movie-sumo-contracts/main';
-const VERSION = '/v1/';
+const VERSION = '/v2/';
 const FILE_NAME = 'api.yaml';
 const FILE_DESTINATION = './src/api/';
 
