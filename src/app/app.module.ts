@@ -7,10 +7,10 @@ import { LoginComponent } from './presentation/login/login.component';
 import { NotFoundComponent } from './presentation/not-found/not-found.component';
 import { ListComponent } from './presentation/list/list.component';
 import { FavoritesComponent } from './presentation/favorites/favorites.component';
-import { AuthModule } from "@auth0/auth0-angular";
+import {AuthHttpInterceptor, AuthModule} from "@auth0/auth0-angular";
 import { AddComponent } from './shared/presentation/add/add.component';
 import { FormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { HomeModule } from "./presentation/home/home.module";
 import { SearchModule } from "./presentation/search/search.module";
 import { LibraryModule } from "./presentation/library/library.module";
@@ -33,6 +33,9 @@ import { SharedModule } from "./shared/shared.module";
       clientId: 'Dcq3p7TmL4VRhAeSWZFDoXeqZoi0knIp',
       authorizationParams: {
         redirect_uri: window.location.origin
+      },
+      httpInterceptor: {
+        allowedList:['https://movie-sumo-gateway-auth-test.oebreme.dev/*'],
       }
     }),
     FormsModule,
@@ -42,7 +45,13 @@ import { SharedModule } from "./shared/shared.module";
     LibraryModule,
     SharedModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
