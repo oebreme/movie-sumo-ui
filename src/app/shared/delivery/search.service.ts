@@ -22,6 +22,12 @@ export class SearchService implements SearchApi {
               @Inject(TMDB_TOKEN) private readonly authToken: string) {
   }
 
+  public getSearchResultFromGatewayTestwise(searchTerm: string): Observable<SearchResult[]> {
+    return this.http.get<SearchResultResponseDto>(
+      `https://movie-sumo-gateway.oebreme.dev/api/v1/movies/` + searchTerm)
+      .pipe(map(response => this.mapper.mapFromApi(response)));
+  }
+
   public getSearchResult(searchTerm: string, language?: string, page?: string): Observable<SearchResult[]> {
     const headers = this.buildHttpHeader();
 
