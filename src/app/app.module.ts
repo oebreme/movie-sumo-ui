@@ -32,6 +32,7 @@ import { SharedModule } from "./shared/shared.module";
       domain: 'dev-oebreme.eu.auth0.com',
       clientId: 'Dcq3p7TmL4VRhAeSWZFDoXeqZoi0knIp',
       authorizationParams: {
+        audience: 'movie-sumo-gateway.oebreme.dev',
         redirect_uri: window.location.origin
       },
       httpInterceptor: {
