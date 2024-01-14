@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-home',
@@ -28,9 +28,4 @@ export class HomeComponent {
       }
     )
   }
-
-
-
-
-  list2Name: string = "Liste 5";
 }

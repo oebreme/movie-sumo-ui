@@ -23,14 +23,9 @@ export class AddComponent implements OnInit {
   }
 
   handleGivenSearchTerm(searchTerm: string): void {
-    // this.searchService.getSearchResult(searchTerm).subscribe((data) => {
-    //   this.searchResults = data;
-    // });
-    this.searchService.getSearchResultFromGatewayTestwise(searchTerm).subscribe((data) => {
+    this.searchService.getSearchResult(searchTerm).subscribe((data) => {
       this.searchResults = data;
     });
-
-
   }
 
   handleAddToFavorites(movieId: number): void {
