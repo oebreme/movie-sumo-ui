@@ -5,7 +5,7 @@ import { map, Observable } from "rxjs";
 import { SearchResult } from "../domain/search-result.model";
 import { SearchResultResponseDto } from "./search-result.dto";
 import { SearchResultMapper } from "../data/search-result-mapper.service";
-import { TMDB_DEFAULT_LANGUAGE, TMDB_TOKEN } from "../config/tmdb.config";
+import { TMDB_DEFAULT_LANGUAGE, TMDB_TOKEN } from "../../config/tmdb.config";
 
 @Injectable()
 export class SearchService implements SearchApi {
