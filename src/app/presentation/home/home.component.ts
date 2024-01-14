@@ -15,13 +15,13 @@ export class HomeComponent {
   publicApiResponse?: Object;
 
   constructor(private readonly http: HttpClient) {
-    this.http.get("https://movie-sumo-gateway-auth-test.oebreme.dev/api/private").subscribe(
+    this.http.get("https://movie-sumo-gateway.oebreme.dev/api/private").subscribe(
       (data) => {
         this.securedAPIResponse = data;
         console.log(data)
       }
     );
-    this.http.get("https://movie-sumo-gateway-auth-test.oebreme.dev/api/public").subscribe(
+    this.http.get("https://movie-sumo-gateway.oebreme.dev/api/public").subscribe(
       (data) => {
         this.publicApiResponse = data;
         console.log(data)

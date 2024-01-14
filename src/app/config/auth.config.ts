@@ -19,9 +19,9 @@ export const authConfig: AuthConfig = {
     audience: 'movie-sumo-gateway.oebreme.dev',
     redirect_uri: window.location.origin
   },
-  apiUri: 'https://movie-sumo-gateway-auth-test.oebreme.dev',
+  apiUri: 'https://movie-sumo-gateway.oebreme.dev',
   errorPath: "/error",
   httpInterceptor: {
-    allowedList:['https://movie-sumo-gateway-auth-test.oebreme.dev/*'],
+    allowedList:['https://movie-sumo-gateway.oebreme.dev/*'],
   }
 }
