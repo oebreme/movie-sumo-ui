@@ -1,12 +1,15 @@
 import { Inject, Injectable } from '@angular/core';
 import { SearchApi, SearchApiEndpoint } from "./search-api";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { map, Observable } from "rxjs";
 import { SearchResult } from "../domain/search-result.model";
-import { SearchResultResponseDto } from "./search-result.dto";
 import { SearchResultMapper } from "../data/search-result-mapper.service";
 import { TMDB_DEFAULT_LANGUAGE, TMDB_TOKEN } from "../../config/tmdb.config";
+import { SearchResultListDto } from "../../delivery/rest/search-result-list.dto";
 
+// TODO:
+//  - aufräumen
+//  - refactoring
 @Injectable()
 export class SearchService implements SearchApi {
 
@@ -22,20 +25,21 @@ export class SearchService implements SearchApi {
               @Inject(TMDB_TOKEN) private readonly authToken: string) {
   }
 
-  public getSearchResult(searchTerm: string, language?: string, page?: string): Observable<SearchResult[]> {
-    const headers = this.buildHttpHeader();
+  public getSearchResult(searchTerm: string, page?: string): Observable<SearchResult[]> {
+    // const headers = this.buildHttpHeader();
 
-    return this.http.get<SearchResultResponseDto>(
-        `${this.endpoint}` + searchTerm + '&include_adult=false&language=' + this.setGivenOrFallbackLanguage(language) + '&page=' + this.setGivenOrFallbackPage(page),
-      {headers: headers})
+    return this.http.get<SearchResultListDto>(
+        `${this.endpoint}` + '/api/v2/search' + `/${searchTerm}` + `/${this.setGivenOrFallbackPage(page)}`,
+      // {headers: headers}
+    )
         .pipe(map(response => this.mapper.mapFromApi(response)));
   }
 
-  private buildHttpHeader(): HttpHeaders {
-    let headers = new HttpHeaders();
-    headers = headers.set('Authorization', `${this.authToken}`)
-    return headers.append('Content-Type', 'application/json');
-  }
+  // private buildHttpHeader(): HttpHeaders {
+  //   let headers = new HttpHeaders();
+  //   headers = headers.set('Authorization', `${this.authToken}`)
+  //   return headers.append('Content-Type', 'application/json');
+  // }
 
   private setGivenOrFallbackLanguage(language: string | undefined): string {
     if (language !== undefined) {
