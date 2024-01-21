@@ -3,7 +3,7 @@ info:
   title: Movie Sumo API
   description: |-
 
-  version: 2.0.1
+  version: 2.0.13
 servers:
   - url: 'http://localhost:8080/api/v2'
   - url: 'https://movie-sumo-gateway.oebreme.dev/api/v2'
@@ -77,29 +77,6 @@ paths:
           description: Preview not found
 
 
-  /movies/{movieId}/streamproviders:
-    get:
-      tags:
-        - Movie
-      summary: get all watch-providers for a movie
-      description: returns a list of watch-providers which have the specific movie in their collection
-      parameters:
-        - name: movieId
-          in: path
-          description: id of Preview to return
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StreamProviderList'
-
-
   /movies/{movieId}/similar:
     get:
       tags:
@@ -123,56 +100,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/MoviePreview'
-
-
-  #
-  # IMAGE
-  #
-  /images/{movieId}/poster:
-    get:
-      tags:
-        - Image
-      summary: get the poster-image of a movie
-      description: returns a URI to the box-office-poster image of a movie
-      parameters:
-        - name: movieId
-          in: path
-          description: id of Movie
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Poster'
-
-
-  /images/{movieId}/backdrop:
-    get:
-      tags:
-        - Image
-      summary: get the backdrop-image of a movie
-      description: returns a URI to the background image of the corresponding box-office-poster
-      parameters:
-        - name: movieId
-          in: path
-          description: id of Movie
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Backdrop'
-
 
   /movies/trends:
     get:
@@ -225,12 +152,64 @@ paths:
                   $ref: '#/components/schemas/MoviePreview'
 
 
+  #
+  # IMAGE
+  #
+  /images/{movieId}/poster:
+    get:
+      tags:
+        - Image
+      summary: get the poster-image of a movie
+      description: returns a URI to the box-office-poster image of a movie
+      parameters:
+        - name: movieId
+          in: path
+          description: id of Movie
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+
+
+  /images/{movieId}/backdrop:
+    get:
+      tags:
+        - Image
+      summary: get the backdrop-image of a movie
+      description: returns a URI to the background image of the corresponding box-office-poster
+      parameters:
+        - name: movieId
+          in: path
+          description: id of Movie
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+
+
+  #
+  # SEARCH
+  #
   /search/{queryTerm}/{page}:
     get:
       tags:
         - Search
       summary: search for a movie by a given String and page
-      description: returns multiple Movies which match to some extend with the provided String
+      description: returns multiple Movies which match to some extend with the provided String - If no page is provided, it will default to the first page
       parameters:
         - name: queryTerm
           in: path
@@ -253,13 +232,11 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Movie'
+                  $ref: '#/components/schemas/SearchResultList'
         '400':
           description: invalid Id supplied
         '404':
           description: movie not found
-
-
 
 
   #
@@ -333,6 +310,14 @@ paths:
           schema:
             type: string
             format: uuid
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddList'
+
 
       responses:
         '201':
@@ -425,13 +410,20 @@ paths:
             type: string
             format: uuid
 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddMovie'
+
       responses:
         '201':
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AddMovie'
+                $ref: '#/components/schemas/MoviePreview'
 
   /lists/{userId}/{listId}/remove/{movieId}:
     delete:
@@ -524,7 +516,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Movie'
+                $ref: '#/components/schemas/MoviePreview'
 
   /watchlist/{userId}/remove/{movieId}:
     delete:
@@ -609,7 +601,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Movie'
+                $ref: '#/components/schemas/MoviePreview'
 
   /favorites/{userId}/remove/{movieId}:
     delete:
@@ -676,7 +668,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/StreamProvider'
+              $ref: '#/components/schemas/AddStreamProvider'
 
       responses:
         '201':
@@ -728,7 +720,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Language'
+                $ref: '#/components/schemas/LanguageList'
 
   /languages/{userId}/add:
     post:
@@ -751,7 +743,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Language'
+              $ref: '#/components/schemas/AddLanguage'
 
       responses:
         '201':
@@ -809,7 +801,7 @@ components:
       required:
         - movieId
         - title
-        - imageUrl
+        - posterImageUrl
         - genres
       properties:
         movieId:
@@ -819,7 +811,7 @@ components:
         title:
           type: string
           example: 'Oppenheimer'
-        imageUrl:
+        posterImageUrl:
           type: string
           example: 'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg'
         genres:
@@ -835,7 +827,7 @@ components:
       required:
         - movieId
         - title
-        - imageUrl
+        - posterImageUrl
         - genres
       properties:
         movieId:
@@ -845,7 +837,7 @@ components:
         title:
           type: string
           example: 'Oppenheimer'
-        imageUrl:
+        posterImageUrl:
           type: string
           example: 'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg'
         genres:
@@ -891,23 +883,71 @@ components:
           format: int32
           example: 5854
 
-    Poster:
+    Image:
       type: object
       required:
-        - posterImageUrl
+        - imageUrl
       properties:
-        posterImageUrl:
+        imageUrl:
           type: string
           example: 'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg'
 
-    Backdrop:
+    SearchResult:
       type: object
       required:
-        - backdropImageUrl
+        - movieId
+        - title
+        - releaseDate
+        - posterImageUrl
+        - genres
       properties:
-        backdropImageUrl:
+        movieId:
+          type: integer
+          format: int64
+          example: 872585
+        title:
           type: string
-          example: 'https://image.tmdb.org/t/p/w500/rLb2cwF3Pazuxaj0sRXQ037tGI1.jpg'
+          example: 'Oppenheimer'
+        releaseDate:
+          type: string
+          format: date
+          description: release date of the movie
+          example: 2024/08/24
+        posterImageUrl:
+          type: string
+          example: 'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg'
+        genres:
+          type: array
+          items:
+            type: string
+            example: 'Drama'
+
+    SearchResultList:
+      type: object
+      required:
+        - page
+        - totalPages
+        - results
+        - totalResults
+      properties:
+        page:
+          type: integer
+          format: int32
+          example: 1
+          description: 'current page of the paginated result'
+        totalPages:
+          type: integer
+          format: int32
+          example: 10
+          description: 'how many pages there are for this query'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchResult'
+        totalResults:
+          type: integer
+          format: int32
+          example: 49
 
     User:
       type: object
@@ -936,6 +976,32 @@ components:
           type: string
         settings:
           $ref: '#/components/schemas/UserSettings'
+
+    UserPreview:
+      description: 'a smaller/reduced User object for displaying purposes'
+      type: object
+      required:
+        - userId
+        - email
+        - username
+        - profilePictureUrl
+      properties:
+        userId:
+          description: provided user identifier
+          example: '9389a6da-8d43-4049-ad28-048777751f68'
+          type: string
+        email:
+          description: email of the user
+          example: 'wald.guenther@provider.de'
+          type: string
+        username:
+          description: additional short name for displaying purposes - it is automatically build from the e-mail (everything pre-'@' symbol)
+          example: 'wald.guenther'
+          type: string
+        profilePictureUrl:
+          description: URI which points to the profile picture of the user
+          example: 'https://s.gravatar.com/avatar/31ab088c3283f6facde0474b9443e141?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fcl.png'
+          type: string
 
     UserSettings:
       type: object
@@ -969,7 +1035,7 @@ components:
           description: user-chosen name/identifier for list
           example: 'my list 1'
         createdBy:
-          $ref: '#/components/schemas/User'
+          $ref: '#/components/schemas/UserPreview'
         createdAt:
           type: string
           format: date-time
@@ -987,6 +1053,16 @@ components:
           items:
             $ref: '#/components/schemas/Movie'
           description: list of movies a user added to this list
+
+    AddList:
+      type: object
+      required:
+        - title
+      properties:
+        title:
+          type: string
+          description: user-chosen name/identifier for list
+          example: 'my list 1'
 
     Watchlist:
       type: object
@@ -1023,7 +1099,7 @@ components:
     StreamProvider:
       type: object
       required:
-        - id
+        - providerId
         - name
         - logoUrl
         - displayOrder
@@ -1054,6 +1130,19 @@ components:
           items:
             $ref: '#/components/schemas/StreamProvider'
 
+    AddStreamProvider:
+      type: object
+      required:
+        - providerId
+        - name
+      properties:
+        providerId:
+          type: string
+          example: 'd780d614-d3e0-4fdd-8979-487dcd074bb1'
+        name:
+          type: string
+          example: 'Apple TV'
+
     Language:
       type: object
       required:
@@ -1073,3 +1162,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Language'
+
+    AddLanguage:
+      type: object
+      required:
+        - isoId
+      properties:
+        isoId:
+          type: string
+          example: 'de'
+          description: ISO 639-1 string representation of a language
