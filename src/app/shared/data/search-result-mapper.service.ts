@@ -1,25 +1,23 @@
 import { Injectable } from '@angular/core';
-import { SearchResultResponseDto } from "../delivery/search-result.dto";
 import { SearchResult } from "../domain/search-result.model";
+import { SearchResultListDto } from "../../delivery/rest/search-result-list.dto";
+import { SearchResultDto } from "../../delivery/rest/search-result";
+
+// TODO:
+//  - aufräumen
+//  - refactoring
 
 @Injectable()
 export class SearchResultMapper {
-  public mapFromApi(searchResultDto: SearchResultResponseDto): SearchResult[] {
-    return searchResultDto.results.map((dto) => {
+  public mapFromApi(searchResultDto: SearchResultListDto): SearchResult[] {
+    return searchResultDto.results.map((dto: SearchResultDto) => {
       return {
-        id: dto.id,
+        id: dto.movieId,
         title: dto.title,
-        imageUrl: this.buildImgUrl(dto.backdrop_path),
-        genres: dto.genre_ids,
-        overview: dto.overview,
-        releaseDate: dto.release_date
+        imageUrl: dto.posterImageUrl,
+        genres: dto.genres,
+        releaseDate: dto.releaseDate
       };
     });
-  }
-
-  // TODO
-  //  - some results dont have a image-ressource and instead return 'null'
-  private buildImgUrl(imgPath: string): string {
-    return "https://image.tmdb.org/t/p/w500/" + imgPath;
   }
 }
