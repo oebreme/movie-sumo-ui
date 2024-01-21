@@ -2,7 +2,6 @@ export interface SearchResult {
     "id": number,
     "title": string,
     "imageUrl": string,
-    "genres": number[],
-    "overview": string,
+    "genres": string[],
     "releaseDate": string,
 }
