@@ -5,6 +5,8 @@ export interface SearchApi {
   getSearchResult<T extends string>(arg: T, arg2: T, arg3: T): Observable<any>;
 }
 
+// TODO:
+//  - get from env and not hardcoded
 export enum SearchApiEndpoint {
-  VALUE = 'https://api.themoviedb.org/3/search/movie?query='
+  VALUE = 'http://localhost:8080'
 }
