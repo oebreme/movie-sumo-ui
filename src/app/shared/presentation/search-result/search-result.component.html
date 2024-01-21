@@ -1,10 +1,15 @@
-<div class="card w-96 bg-base-100 shadow-xl image-full w-full max-w-[90vw] min-w-[90vw] mb-8">
-  <figure >
-    <img [src]="movie.imageUrl" alt="Movies" style="background-size: cover" />
+<div class="card card-side bg-base-100 shadow-xl max-w-[90vw] min-w-[90vw] mb-4">
+  <figure>
+    <img [src]="movie.imageUrl" style="height: 250px" alt="Movie"/>
   </figure>
   <div class="card-body">
     <h2 class="card-title">{{ movie.title }}</h2>
-    <p> {{ movie.overview | truncate:20 }} </p>
+    <p>{{ movie.releaseDate | date }}</p>
+    <p>
+      <ng-container *ngFor="let genre of movie.genres">
+        <span>{{ genre }} </span>
+      </ng-container>
+    </p>
     <div class="card-actions justify-end">
       <button class="btn btn-primary" (click)="onClick()">Add to Favorites</button>
     </div>
