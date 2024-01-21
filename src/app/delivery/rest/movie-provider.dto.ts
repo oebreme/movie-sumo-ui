@@ -1,3 +1,3 @@
-import { MovieProvider as genMovieDetails } from 'src/app/delivery/rest/generated/model/movieProvider';
+import { StreamProvider as genMovieDetails } from 'src/app/delivery/rest/generated/model/streamProvider';
 
-export type MovieProviderDto = genMovieDetails;
+export type StreamProviderDto = genMovieDetails;
