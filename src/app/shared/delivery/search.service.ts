@@ -26,20 +26,11 @@ export class SearchService implements SearchApi {
   }
 
   public getSearchResult(searchTerm: string, page?: string): Observable<SearchResult[]> {
-    // const headers = this.buildHttpHeader();
-
     return this.http.get<SearchResultListDto>(
-        `${this.endpoint}` + '/api/v2/search' + `/${searchTerm}` + `/${this.setGivenOrFallbackPage(page)}`,
-      // {headers: headers}
+        `${this.endpoint}` + '/api/v2/search' + `?queryTerm=${searchTerm}` + `&page=${this.setGivenOrFallbackPage(page)}`,
     )
         .pipe(map(response => this.mapper.mapFromApi(response)));
   }
-
-  // private buildHttpHeader(): HttpHeaders {
-  //   let headers = new HttpHeaders();
-  //   headers = headers.set('Authorization', `${this.authToken}`)
-  //   return headers.append('Content-Type', 'application/json');
-  // }
 
   private setGivenOrFallbackLanguage(language: string | undefined): string {
     if (language !== undefined) {
