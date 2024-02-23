@@ -3,7 +3,7 @@ info:
   title: Movie Sumo API
   description: |-
 
-  version: 2.0.13
+  version: 2.0.15
 servers:
   - url: 'http://localhost:8080/api/v2'
   - url: 'https://movie-sumo-gateway.oebreme.dev/api/v2'
@@ -204,7 +204,7 @@ paths:
   #
   # SEARCH
   #
-  /search/{queryTerm}/{page}:
+  /search:
     get:
       tags:
         - Search
@@ -212,15 +212,14 @@ paths:
       description: returns multiple Movies which match to some extend with the provided String - If no page is provided, it will default to the first page
       parameters:
         - name: queryTerm
-          in: path
+          in: query
           description: provided String to search for
           required: true
           schema:
             type: string
         - name: page
-          in: path
-          description: page number to determine which Movies to fetch
-          required: true
+          in: query
+          description: page number to determine which Movies to fetch - defaults to '1' if no page is supplied
           schema:
             type: integer
             format: int32
@@ -242,6 +241,33 @@ paths:
   #
   # USERS
   #
+  /users:
+    post:
+      tags:
+        - User
+      summary: register a user to the database
+      description: registers a new user to the database - if user is already known it returns the user by given email address
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterUser'
+      responses:
+        '200':
+          description: User registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
   /users/{userId}:
     get:
       tags:
@@ -977,6 +1003,27 @@ components:
         settings:
           $ref: '#/components/schemas/UserSettings'
 
+    RegisterUser:
+      description: object to register a new or already known user
+      type: object
+      required:
+        - email
+        - userName
+        - profilePictureUrl
+      properties:
+        email:
+          type: string
+          format: email
+          example: 'herbert.schlange@mail.com'
+        userName:
+          type: string
+          example: 'herbert.schlange'
+          description: substring of the provided email which contains everything before the @-symbol
+        profilePictureUrl:
+          type: string
+          example: 'https://s.gravatar.com/avatar/31ab088c3283f6facde0474b9443e141?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fcl.png'
+          description: URI which points to the profile picture of the user
+
     UserPreview:
       description: 'a smaller/reduced User object for displaying purposes'
       type: object
@@ -1172,3 +1219,25 @@ components:
           type: string
           example: 'de'
           description: ISO 639-1 string representation of a language
+
+    Error:
+      type: object
+      required:
+        - timestamp
+        - message
+        - path
+        - status
+        - error
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        message:
+          type: string
+        path:
+          type: string
+        status:
+          type: integer
+          format: int32
+        error:
+          type: string
