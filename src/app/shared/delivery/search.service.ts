@@ -22,7 +22,7 @@ export class SearchService implements SearchApi {
 
   public getSearchResult(searchTerm: string, page?: string): Observable<SearchResult[]> {
     return this.http.get<SearchResultListDto>(
-        `${this.endpoint}/api/v2/search` + `?queryTerm=${searchTerm}` + `&page=${this.setGivenOrDefaultPage(page)}`,
+        `${this.endpoint}/api/v3/search` + `?queryTerm=${searchTerm}` + `&page=${this.setGivenOrDefaultPage(page)}`,
     ).pipe(map(response => this.mapper.fromApi(response)));
   }
 

@@ -27,7 +27,7 @@ export class RegisterUserService implements RegisterUserApi {
       console.log(user);
 
       function registerUser(user: User | null | undefined) {
-        return http.post('http://localhost:8081/api/v2/users', {
+        return http.post('http://localhost:8081/api/v3/users', {
           email: user?.email,
           userName: user?.nickname,
           profilePictureUrl: user?.picture
