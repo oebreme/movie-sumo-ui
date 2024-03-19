@@ -9,5 +9,5 @@ export const environment = {
   production: false,
   authConfig: authConfig,
   defaultLanguage: 'de',
-  movieSumoGatewayUrl: 'http://localhost:8081'
+  movieSumoGatewayUrl: 'http://localhost:8085'
 };
