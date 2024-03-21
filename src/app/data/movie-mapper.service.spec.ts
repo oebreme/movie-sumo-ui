@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
 import { MovieMapperService } from './movie-mapper.service';
-import { MovieDto } from "../delivery/rest/movie.dto";
-import { Movie, MoviePreview } from "../domain/movie.model";
+import { MovieDto } from "../delivery/rest/movie/movie.dto";
+import { Movie } from "../domain/model/movie/movie.model";
 
 describe('MovieMapperService', () => {
   let service: MovieMapperService;
@@ -16,37 +16,45 @@ describe('MovieMapperService', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('given a Dto', () => {
+  describe('given a MovieDto', () => {
 
-    test('with details, should mapFromApi', () => {
+    test('should mapFromApi', () => {
       const dto: MovieDto = {
-        id: 400,
+        movieId: '400',
+        externalId: 15011,
         title: 'input',
-        imageUrl: 'url',
+        posterImageUrl: 'url',
         genres: ['a', 'b'],
         details: {
           runtime: 120,
           releaseDate: '2023-11-03T22:03:48.611Z',
           overview: 'text',
-          availableOn: [
-            {
-              name: 'Netflix',
-              logoUrl: 'netflixUrl',
-              displayOrder: 1
-            },
-            {
-              name: 'Amazon Prime',
-              logoUrl: 'primeUrl',
-              displayOrder: 2
-            },
-          ]
+          availableOn: {
+            providers: [
+              {
+                externalId: 1,
+                name: 'Netflix',
+                logoUrl: 'netflixUrl',
+                displayOrder: 1
+              },
+              {
+                externalId: 2,
+                name: 'Amazon Prime',
+                logoUrl: 'primeUrl',
+                displayOrder: 2
+              },
+            ]
+          },
+          ratingAverage: 102,
+          ratingVoteCount: 500
         }
       };
 
       const expected: Movie = {
-        id: 400,
+        movieId: '400',
+        externalId: 15011,
         title: 'input',
-        imageUrl: 'url',
+        posterImageUrl: 'url',
         genres: ['a', 'b'],
         details: {
           runtime: 120,
@@ -54,58 +62,21 @@ describe('MovieMapperService', () => {
           overview: 'text',
           availableOn: [
             {
+              externalId: 1,
               name: 'Netflix',
               logoUrl: 'netflixUrl',
               displayOrder: 1
             },
             {
+              externalId: 2,
               name: 'Amazon Prime',
               logoUrl: 'primeUrl',
               displayOrder: 2
             },
-          ]
+          ],
+          ratingAverage: 102,
+          ratingVoteCount: 500
         }
-      };
-
-      const result = service.mapFromApi(dto);
-
-      expect(result).toStrictEqual(expected);
-    });
-
-    test('with undefined details, should mapFromApi', () => {
-      const dto: MovieDto = {
-        id: 500,
-        title: 'input',
-        imageUrl: 'url',
-        genres: ['a', 'b'],
-        details: undefined
-      };
-
-      const expected: MoviePreview = {
-        id: 500,
-        title: 'input',
-        imageUrl: 'url',
-        genres: ['a', 'b']
-      };
-
-      const result = service.mapFromApi(dto);
-
-      expect(result).toStrictEqual(expected);
-    });
-
-    test('without details, should mapFromApi', () => {
-      const dto: MovieDto = {
-        id: 600,
-        title: 'input',
-        imageUrl: 'url',
-        genres: ['a', 'b']
-      };
-
-      const expected: MoviePreview = {
-        id: 600,
-        title: 'input',
-        imageUrl: 'url',
-        genres: ['a', 'b']
       };
 
       const result = service.mapFromApi(dto);
