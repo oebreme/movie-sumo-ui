@@ -43,3 +43,4 @@ Thumbs.db
 
 # OpenAPI
 ./src/app/delivery/rest/generated
+/src/app/delivery/rest/generated/
