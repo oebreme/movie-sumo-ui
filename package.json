@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "jest",
     "pregenerate:api": "node download-contract.js",
-    "generate:api": "openapi-generator-cli generate --global-property models -g typescript-angular -i src/api/api.yaml -o src/app/delivery/rest/generated"
+    "generate:api": "openapi-generator-cli generate --global-property models -g typescript-angular -i src/api/api.yaml -o src/app/delivery/rest/generated -c openapi-generator.config.yml"
   },
   "private": true,
   "dependencies": {
