@@ -3,9 +3,9 @@ import { AuthService, User } from "@auth0/auth0-angular";
 import { HttpClient } from "@angular/common/http";
 import { RegisterUserApi } from "./register-user-api";
 import {Observable, of} from 'rxjs';
-import {MovieSumoUserDto} from "../../delivery/rest/movie-sumo-user.dto";
 import {GATEWAY_BASE_URL} from "../../config/gateway.config";
 import {RegisterUserDto} from "../../delivery/rest/user/register-user.dto";
+import {UserDto} from "../../delivery/rest/user/user.dto";
 
 // TODO:
 //  - this service is supposed to make a call to the gateway - which in turn will call the database/backend to
@@ -44,7 +44,7 @@ export class RegisterUserService implements RegisterUserApi {
     });
   }
 
-  public registerUser(registerUser: RegisterUserDto): Observable<MovieSumoUserDto> {
+  public registerUser(registerUser: RegisterUserDto): Observable<UserDto> {
     return of();
     // return this.http.post<MovieSumoUserDto>(
     //   `${this.endpoint}/api/v2/users`

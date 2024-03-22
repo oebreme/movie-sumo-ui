@@ -4,8 +4,8 @@ import { HttpClient } from "@angular/common/http";
 import { map, Observable } from "rxjs";
 import { SearchResult } from "../domain/search-result.model";
 import { SearchResultMapper } from "../data/search-result-mapper.service";
-import { SearchResultListDto } from "../../delivery/rest/search-result-list.dto";
 import { GATEWAY_BASE_URL } from "../../config/gateway.config";
+import { MovieSearchResultListDto } from "../../delivery/rest/search/movie-search-result-list.dto";
 
 @Injectable()
 export class SearchService implements SearchApi {
@@ -21,7 +21,7 @@ export class SearchService implements SearchApi {
   }
 
   public getSearchResult(searchTerm: string, page?: string): Observable<SearchResult[]> {
-    return this.http.get<SearchResultListDto>(
+    return this.http.get<MovieSearchResultListDto>(
         `${this.endpoint}/api/v3/search` + `?queryTerm=${searchTerm}` + `&page=${this.setGivenOrDefaultPage(page)}`,
     ).pipe(map(response => this.mapper.fromApi(response)));
   }
