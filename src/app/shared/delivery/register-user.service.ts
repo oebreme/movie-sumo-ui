@@ -2,10 +2,10 @@ import {Inject, Injectable} from '@angular/core';
 import { AuthService, User } from "@auth0/auth0-angular";
 import { HttpClient } from "@angular/common/http";
 import { RegisterUserApi } from "./register-user-api";
-import {map, Observable, of} from 'rxjs';
-import {RegisterUserDto} from "../../delivery/rest/register-user.dto";
+import {Observable, of} from 'rxjs';
 import {MovieSumoUserDto} from "../../delivery/rest/movie-sumo-user.dto";
 import {GATEWAY_BASE_URL} from "../../config/gateway.config";
+import {RegisterUserDto} from "../../delivery/rest/user/register-user.dto";
 
 // TODO:
 //  - this service is supposed to make a call to the gateway - which in turn will call the database/backend to
