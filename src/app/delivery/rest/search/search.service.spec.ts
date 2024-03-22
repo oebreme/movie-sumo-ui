@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SearchResultMapper } from './search-result-mapper.service';
-import { SharedModule } from "../shared.module";
+import { SearchService } from './search.service';
+import { SharedModule } from "../../../shared/shared.module";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 
-describe('SearchResultMapperService', () => {
-  let service: SearchResultMapper;
+describe('SearchService', () => {
+  let service: SearchService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -14,7 +14,7 @@ describe('SearchResultMapperService', () => {
         HttpClientTestingModule
       ]
     });
-    service = TestBed.inject(SearchResultMapper);
+    service = TestBed.inject(SearchService);
   });
 
   it('should be created', () => {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SearchResult } from "../domain/search-result.model";
+import { SearchResult } from "../../../shared/domain/search-result.model";
 import { SearchResultDto } from "../../delivery/rest/search-result";
 import { SearchResultListDto } from "../../delivery/rest/search-result-list.dto";
 

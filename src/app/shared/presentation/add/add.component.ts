@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchResult } from "../../domain/search-result.model";
-import { SearchService } from "../../delivery/search.service";
+import { SearchService } from "../../../delivery/rest/search/search.service";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import {RegisterUserService} from "../../shared/delivery/register-user.service";
+import {RegisterUserService} from "../../delivery/rest/user/register-user.service";
 
 @Component({
   selector: 'app-home',
