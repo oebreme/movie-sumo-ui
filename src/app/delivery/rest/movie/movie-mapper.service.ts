@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Movie } from "../domain/model/movie/movie.model";
-import { MovieDto } from "../delivery/rest/movie/movie.dto";
-import { MovieDetailsDto } from "../delivery/rest/movie/movie-details.dto";
-import { MovieDetails } from "../domain/movie-details.model";
-import { MovieProviderDto } from "../delivery/rest/movie/movie-provider.dto";
-import { MovieProvider } from "../domain/movie-provider.model";
+import { Movie } from "../../../domain/model/movie/movie.model";
+import { MovieDto } from "./movie.dto";
+import { MovieDetailsDto } from "./movie-details.dto";
+import { MovieDetails } from "../../../domain/movie-details.model";
+import { MovieProviderDto } from "./movie-provider.dto";
+import { MovieProvider } from "../../../domain/movie-provider.model";
 
 @Injectable({
   providedIn: 'root'
