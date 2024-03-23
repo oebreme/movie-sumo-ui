@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { SearchResult } from "../../../shared/domain/search-result.model";
-import { SearchResultDto } from "../../delivery/rest/search-result";
-import { SearchResultListDto } from "../../delivery/rest/search-result-list.dto";
+import {MovieSearchResultListDto} from "./movie-search-result-list.dto";
+import {MoviePreviewDto} from "../movie/movie-preview.dto";
 
 @Injectable()
 export class SearchResultMapper {
-  public fromApi(searchResultDto: SearchResultListDto): SearchResult[] {
-    return searchResultDto.results.map((dto: SearchResultDto) => {
+  public fromApi(searchResultDto: MovieSearchResultListDto): SearchResult[] {
+    return searchResultDto.results.map((dto: MoviePreviewDto) => {
       return {
         id: dto.externalId,
         title: dto.title,

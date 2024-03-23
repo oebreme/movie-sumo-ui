@@ -9,6 +9,7 @@ import { AuthGuard } from "@auth0/auth0-angular";
 import { AddComponent } from "./shared/presentation/add/add.component";
 import { SearchComponent } from "./presentation/search/search.component";
 import { LibraryComponent } from "./presentation/library/library.component";
+import {LandingComponent} from "./presentation/landing/landing.component";
 
 const routes: Routes = [
   {
@@ -57,8 +58,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
+    component: LandingComponent,
   },
   {
     path: '**',
