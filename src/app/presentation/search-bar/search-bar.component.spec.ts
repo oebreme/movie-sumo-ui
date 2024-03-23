@@ -1,7 +1,7 @@
 import { SearchBarComponent } from './search-bar.component';
 import { render } from "@testing-library/angular";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { SharedModule } from "../../shared.module";
+import { SharedModule } from "../../shared/shared.module";
 
 describe('SearchBarComponent', () => {
   let component: SearchBarComponent;

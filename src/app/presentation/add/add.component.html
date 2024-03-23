@@ -15,9 +15,9 @@
 
 
   <!-- SEARCH BAR START -->
-  <app-search-bar
+<!--  <app-search-bar
     (searchTermProvided)="handleGivenSearchTerm($event)"
-  ></app-search-bar>
+  ></app-search-bar>-->
   <!-- SEARCH BAR END -->
 
 
@@ -27,16 +27,15 @@
 
 
   <!-- SEARCH RESULTS START -->
-  <ng-container *ngIf="searchResults !== undefined">
+<!--  <ng-container *ngIf="searchResults !== undefined">
     <div *ngFor="let result of searchResults" class="flex w-full items-center justify-center">
 
       <app-search-result
-        [movie]="result"
         (addToList)="handleAddToFavorites($event)"
       ></app-search-result>
 
     </div>
 
-  </ng-container>
+  </ng-container>-->
   <!-- SEARCH RESULTS END -->
 </main>

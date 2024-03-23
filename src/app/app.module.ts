@@ -8,7 +8,7 @@ import { LoginComponent } from './presentation/login/login.component';
 import { NotFoundComponent } from './presentation/not-found/not-found.component';
 import { ListComponent } from './presentation/list/list.component';
 import { FavoritesComponent } from './presentation/favorites/favorites.component';
-import { AddComponent } from './shared/presentation/add/add.component';
+import { AddComponent } from './presentation/add/add.component';
 import { FormsModule } from '@angular/forms';
 import { HomeModule } from './presentation/home/home.module';
 import { SearchModule } from './presentation/search/search.module';

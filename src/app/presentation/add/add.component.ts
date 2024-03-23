@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchResult } from "../../domain/search-result.model";
-import { SearchService } from "../../../delivery/rest/search/search.service";
+import { SearchService } from "../../delivery/rest/search/search.service";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -10,7 +9,8 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class AddComponent implements OnInit {
   listRef?: string;
-  searchResults?: SearchResult[];
+
+  // searchResults?: SearchResult[];
 
   constructor(private readonly searchService: SearchService,
               private readonly route: ActivatedRoute) {
@@ -22,11 +22,12 @@ export class AddComponent implements OnInit {
     });
   }
 
-  handleGivenSearchTerm(searchTerm: string): void {
-    this.searchService.getSearchResult(searchTerm).subscribe((data) => {
-      this.searchResults = data;
-    });
-  }
+  // TODO
+  // handleGivenSearchTerm(searchTerm: string): void {
+  //   this.searchService.getSearchResult(searchTerm).subscribe((data) => {
+  //     this.searchResults = data;
+  //   });
+  // }
 
   handleAddToFavorites(movieId: number): void {
     console.log(`Add "${movieId}" to "${this.listRef}" recognized by Parent-Comp`);

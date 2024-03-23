@@ -6,7 +6,7 @@ import { NotFoundComponent } from "./presentation/not-found/not-found.component"
 import { ListComponent } from "./presentation/list/list.component";
 import { FavoritesComponent } from "./presentation/favorites/favorites.component";
 import { AuthGuard } from "@auth0/auth0-angular";
-import { AddComponent } from "./shared/presentation/add/add.component";
+import { AddComponent } from "./presentation/add/add.component";
 import { SearchComponent } from "./presentation/search/search.component";
 import { LibraryComponent } from "./presentation/library/library.component";
 import {LandingComponent} from "./presentation/landing/landing.component";
