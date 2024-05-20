@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "movie-sumo-ui:build:production"
+              "buildTarget": "movie-sumo-ui:build:production"
             },
             "development": {
-              "browserTarget": "movie-sumo-ui:build:development"
+              "buildTarget": "movie-sumo-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,10 +83,13 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "movie-sumo-ui:build"
+            "buildTarget": "movie-sumo-ui:build"
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
