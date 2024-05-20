@@ -8,7 +8,7 @@ export class SearchResultMapper {
   public fromApi(searchResultDto: SearchResultListDto): SearchResult[] {
     return searchResultDto.results.map((dto: SearchResultDto) => {
       return {
-        id: dto.movieId,
+        id: dto.externalId,
         title: dto.title,
         imageUrl: dto.posterImageUrl,
         genres: dto.genres,

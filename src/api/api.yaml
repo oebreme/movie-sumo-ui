@@ -3,34 +3,33 @@ info:
   title: Movie Sumo API
   description: |-
 
-  version: 2.0.15
+  version: 3.0.7
 servers:
-  - url: 'http://localhost:8080/api/v2'
-  - url: 'https://movie-sumo-gateway.oebreme.dev/api/v2'
+  - url: 'http://localhost:8085/api/v3'
+  - url: 'https://movie-sumo-gateway.oebreme.dev/api/v3'
 
 tags:
   - name: Movie
-  - name: Image
   - name: Search
   - name: User
   - name: Lists
   - name: Watchlist
   - name: Favorites
-  - name: Stream Provider
+  - name: Provider
   - name: Language
 
 paths:
   #
   # MOVIES
   #
-  /movies/{movieId}:
+  /movies/{externalMovieId}:
     get:
       tags:
         - Movie
       summary: get a movie by Id
       description: returns a single Movie
       parameters:
-        - name: movieId
+        - name: externalMovieId
           in: path
           description: identifier of Movie to return
           required: true
@@ -50,14 +49,14 @@ paths:
           description: Movie not found
 
 
-  /movies/{movieId}/preview:
+  /movies/{externalMovieId}/preview:
     get:
       tags:
         - Movie
       summary: get a preview of a movie
       description: returns a smaller/reduced Movie object for preview purposes
       parameters:
-        - name: movieId
+        - name: externalMovieId
           in: path
           description: id of MoviePreview to return
           required: true
@@ -77,14 +76,14 @@ paths:
           description: Preview not found
 
 
-  /movies/{movieId}/similar:
+  /movies/{externalMovieId}/similar:
     get:
       tags:
         - Movie
       summary: get similar movies of a movie
       description: returns a list with similar movies, based on genre and story-summary-keywords
       parameters:
-        - name: movieId
+        - name: externalMovieId
           in: path
           description: id of Movie which the similar results will be based on
           required: true
@@ -153,55 +152,6 @@ paths:
 
 
   #
-  # IMAGE
-  #
-  /images/{movieId}/poster:
-    get:
-      tags:
-        - Image
-      summary: get the poster-image of a movie
-      description: returns a URI to the box-office-poster image of a movie
-      parameters:
-        - name: movieId
-          in: path
-          description: id of Movie
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Image'
-
-
-  /images/{movieId}/backdrop:
-    get:
-      tags:
-        - Image
-      summary: get the backdrop-image of a movie
-      description: returns a URI to the background image of the corresponding box-office-poster
-      parameters:
-        - name: movieId
-          in: path
-          description: id of Movie
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Image'
-
-
-  #
   # SEARCH
   #
   /search:
@@ -231,7 +181,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/SearchResultList'
+                  $ref: '#/components/schemas/MovieSearchResultList'
         '400':
           description: invalid Id supplied
         '404':
@@ -657,12 +607,12 @@ paths:
 
 
   #
-  # STREAM PROVIDERS
+  # PROVIDERS
   #
-  /streamproviders:
+  /streamproviders/supported:
     get:
       tags:
-        - Stream Provider
+        - Provider
       summary: get all currently supported streaming providers
       description: returns a list of StreamingProviders objects containing all streaming providers which are currently supported by the app
       responses:
@@ -671,12 +621,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StreamProviderList'
+                $ref: '#/components/schemas/SupportedProviderList'
 
   /streamproviders/{userId}/add:
     post:
       tags:
-        - Stream Provider
+        - Provider
       summary: add a stream provider to a user
       description: add a stream provider which the user has an active subscription for
       parameters:
@@ -694,7 +644,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AddStreamProvider'
+              $ref: '#/components/schemas/AddSupportedProvider'
 
       responses:
         '201':
@@ -702,12 +652,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StreamProvider'
+                $ref: '#/components/schemas/SupportedProvider'
 
   /streamproviders/{userId}/remove/{providerId}:
     delete:
       tags:
-        - Stream Provider
+        - Provider
       summary: removes a stream provider from a user
       description: removes a stream provider by its providerId
       parameters:
@@ -734,7 +684,7 @@ paths:
   #
   # LANGUAGES
   #
-  /languages:
+  /languages/supported:
     get:
       tags:
         - Language
@@ -746,7 +696,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LanguageList'
+                $ref: '#/components/schemas/SupportedLanguageList'
 
   /languages/{userId}/add:
     post:
@@ -769,7 +719,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AddLanguage'
+              $ref: '#/components/schemas/AddSupportedLanguage'
 
       responses:
         '201':
@@ -777,7 +727,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Language'
+                $ref: '#/components/schemas/SupportedLanguage'
 
   /languages/{userId}/remove/{isoId}:
     delete:
@@ -812,10 +762,10 @@ components:
       description: object intended to be used for adding movies to a list
       type: object
       required:
-        - movieId
+        - externalId
         - title
       properties:
-        movieId:
+        externalId:
           type: integer
           format: int64
           example: 872585
@@ -826,11 +776,17 @@ components:
       type: object
       required:
         - movieId
+        - externalId
         - title
         - posterImageUrl
         - genres
+        - details
       properties:
         movieId:
+          type: string
+          format: uuid
+          example: '9389a6da-8d43-4049-ad28-048777751f68'
+        externalId:
           type: integer
           format: int64
           example: 872585
@@ -851,12 +807,13 @@ components:
     MoviePreview:
       type: object
       required:
-        - movieId
+        - externalId
         - title
         - posterImageUrl
+        - releaseDate
         - genres
       properties:
-        movieId:
+        externalId:
           type: integer
           format: int64
           example: 872585
@@ -866,6 +823,10 @@ components:
         posterImageUrl:
           type: string
           example: 'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg'
+        releaseDate:
+          description: first release of the movie anywhere in the world
+          type: string
+          example: 2023-07-19
         genres:
           type: array
           items:
@@ -897,7 +858,7 @@ components:
           format: date
           example: 2023-07-19
         availableOn:
-          $ref: '#/components/schemas/StreamProviderList'
+          $ref: '#/components/schemas/MovieProviderList'
         ratingAverage:
           description: floating point number representing user ratings of the movie
           type: number
@@ -909,51 +870,12 @@ components:
           format: int32
           example: 5854
 
-    Image:
-      type: object
-      required:
-        - imageUrl
-      properties:
-        imageUrl:
-          type: string
-          example: 'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg'
-
-    SearchResult:
-      type: object
-      required:
-        - movieId
-        - title
-        - releaseDate
-        - posterImageUrl
-        - genres
-      properties:
-        movieId:
-          type: integer
-          format: int64
-          example: 872585
-        title:
-          type: string
-          example: 'Oppenheimer'
-        releaseDate:
-          type: string
-          format: date
-          description: release date of the movie
-          example: 2024/08/24
-        posterImageUrl:
-          type: string
-          example: 'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg'
-        genres:
-          type: array
-          items:
-            type: string
-            example: 'Drama'
-
-    SearchResultList:
+    MovieSearchResultList:
       type: object
       required:
         - page
-        - totalPages
         - results
+        - totalPages
         - totalResults
       properties:
         page:
@@ -961,15 +883,15 @@ components:
           format: int32
           example: 1
           description: 'current page of the paginated result'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/MoviePreview'
         totalPages:
           type: integer
           format: int32
           example: 10
           description: 'how many pages there are for this query'
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/SearchResult'
         totalResults:
           type: integer
           format: int32
@@ -1060,12 +982,12 @@ components:
           description: a list of Languages the user is able to understand
           type: array
           items:
-            $ref: '#/components/schemas/Language'
+            $ref: '#/components/schemas/SupportedLanguage'
         subscribedStreamProviders:
           description: a list of StreamProviders the user is currently subscribed to
           type: array
           items:
-            $ref: '#/components/schemas/StreamProvider'
+            $ref: '#/components/schemas/SupportedProvider'
 
     List:
       type: object
@@ -1143,17 +1065,18 @@ components:
             $ref: '#/components/schemas/Movie'
           description: list of favorite movies of a user
 
-    StreamProvider:
+    MovieProvider:
       type: object
       required:
-        - providerId
+        - externalId
         - name
         - logoUrl
         - displayOrder
       properties:
-        providerId:
-          type: string
-          example: 'd780d614-d3e0-4fdd-8979-487dcd074bb1'
+        externalId:
+          type: integer
+          format: int64
+          example: 872585
         name:
           type: string
           example: 'Apple TV'
@@ -1166,7 +1089,7 @@ components:
           description: order for provider relevancy - "1" being most relevant provider
           example: 4
 
-    StreamProviderList:
+    MovieProviderList:
       description: information about where this movie is available for streaming, renting or buying
       type: object
       required:
@@ -1175,22 +1098,72 @@ components:
         providers:
           type: array
           items:
-            $ref: '#/components/schemas/StreamProvider'
+            $ref: '#/components/schemas/MovieProvider'
 
-    AddStreamProvider:
+    AddMovieProvider:
       type: object
       required:
-        - providerId
+        - externalId
         - name
       properties:
-        providerId:
-          type: string
-          example: 'd780d614-d3e0-4fdd-8979-487dcd074bb1'
+        externalId:
+          type: integer
+          format: int64
+          example: 872585
         name:
           type: string
           example: 'Apple TV'
 
-    Language:
+    SupportedProvider:
+      type: object
+      required:
+        - externalId
+        - name
+        - logoUrl
+        - displayOrder
+      properties:
+        externalId:
+          type: integer
+          format: int64
+          example: 872585
+        name:
+          type: string
+          example: 'Apple TV'
+        logoUrl:
+          type: string
+          example: 'https://image.tmdb.org/t/p/w500/peURlLlr8jggOwK53fJ5wdQl05y.jpg'
+        displayOrder:
+          type: integer
+          format: int32
+          description: order for provider relevancy - "1" being most relevant provider
+          example: 4
+
+    SupportedProviderList:
+      description: general information about which providers are supported by this app
+      type: object
+      required:
+        - providers
+      properties:
+        providers:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupportedProvider'
+
+    AddSupportedProvider:
+      type: object
+      required:
+        - externalId
+        - name
+      properties:
+        externalId:
+          type: integer
+          format: int64
+          example: 872585
+        name:
+          type: string
+          example: 'Apple TV'
+
+    SupportedLanguage:
       type: object
       required:
         - isoId
@@ -1200,7 +1173,7 @@ components:
           example: 'de'
           description: ISO 639-1 string representation of a language
 
-    LanguageList:
+    SupportedLanguageList:
       type: object
       required:
         - languages
@@ -1208,9 +1181,9 @@ components:
         languages:
           type: array
           items:
-            $ref: '#/components/schemas/Language'
+            $ref: '#/components/schemas/SupportedLanguage'
 
-    AddLanguage:
+    AddSupportedLanguage:
       type: object
       required:
         - isoId
