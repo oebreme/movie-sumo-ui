@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { UserSettings } from './userSettings';
+import { UserSettings } from './user-settings.api';
 
 
 export interface User { 

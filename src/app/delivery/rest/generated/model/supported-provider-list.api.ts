@@ -9,17 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { Movie } from './movie';
+import { SupportedProvider } from './supported-provider.api';
 
 
-export interface Watchlist { 
-    /**
-     * number of movies contained in the list
-     */
-    count: number;
-    /**
-     * list of movies the user wants to watch
-     */
-    watchlist: Array<Movie>;
+/**
+ * general information about which providers are supported by this app
+ */
+export interface SupportedProviderList { 
+    providers: Array<SupportedProvider>;
 }
 

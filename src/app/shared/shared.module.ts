@@ -10,7 +10,6 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 @NgModule({
   declarations: [
     SearchBarComponent,
-    SearchResultComponent,
     TruncatePipe
   ],
   exports: [
@@ -19,7 +18,8 @@ import { TruncatePipe } from './pipes/truncate.pipe';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    SearchResultComponent
   ],
   providers: [
     SearchService,

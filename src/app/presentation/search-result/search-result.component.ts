@@ -1,16 +1,16 @@
 import {
   Component,
   EventEmitter,
-  Input,
   Output
 } from '@angular/core';
 
 @Component({
   selector: 'app-search-result',
-  templateUrl: './search-result.a.html',
+  templateUrl: './search-result.component.html',
+  standalone: true,
   styleUrls: ['./search-result.component.scss']
 })
-export class rSearchResultComponent {
+export class SearchResultComponent {
   // @Input() movie!: SearchResult;
   @Output() addToList = new EventEmitter<number>();
 

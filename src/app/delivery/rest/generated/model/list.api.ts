@@ -9,17 +9,31 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { Movie } from './movie';
+import { Movie } from './movie.api';
+import { UserPreview } from './user-preview.api';
 
 
-export interface Favorites { 
+export interface List { 
+    /**
+     * user-chosen name/identifier for list
+     */
+    title: string;
+    createdBy: UserPreview;
+    /**
+     * timestamp of the lists creation-time
+     */
+    createdAt: string;
+    /**
+     * URI to the image of a list
+     */
+    imageUrl: string;
     /**
      * number of movies contained in the list
      */
     count: number;
     /**
-     * list of favorite movies of a user
+     * list of movies a user added to this list
      */
-    favorites: Array<Movie>;
+    movieList: Array<Movie>;
 }
 

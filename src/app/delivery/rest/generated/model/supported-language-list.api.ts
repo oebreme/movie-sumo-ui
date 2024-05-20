@@ -9,13 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { SupportedProvider } from './supportedProvider';
+import { SupportedLanguage } from './supported-language.api';
 
 
-/**
- * general information about which providers are supported by this app
- */
-export interface SupportedProviderList { 
-    providers: Array<SupportedProvider>;
+export interface SupportedLanguageList { 
+    languages: Array<SupportedLanguage>;
 }
 

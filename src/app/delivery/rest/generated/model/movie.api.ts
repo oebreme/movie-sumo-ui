@@ -9,19 +9,15 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { MoviePreview } from './moviePreview';
+import { MovieDetails } from './movie-details.api';
 
 
-export interface MovieSearchResultList { 
-    /**
-     * current page of the paginated result
-     */
-    page: number;
-    results: Array<MoviePreview>;
-    /**
-     * how many pages there are for this query
-     */
-    totalPages: number;
-    totalResults: number;
+export interface Movie { 
+    movieId: string;
+    externalId: number;
+    title: string;
+    posterImageUrl: string;
+    genres: Array<string>;
+    details: MovieDetails;
 }
 

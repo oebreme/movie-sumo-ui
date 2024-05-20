@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { MovieProviderList } from './movieProviderList';
+import { MovieProviderList } from './movie-provider-list.api';
 
 
 export interface MovieDetails { 

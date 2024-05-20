@@ -9,18 +9,17 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { SupportedLanguage } from './supportedLanguage';
-import { SupportedProvider } from './supportedProvider';
+import { Movie } from './movie.api';
 
 
-export interface UserSettings { 
+export interface Watchlist { 
     /**
-     * a list of Languages the user is able to understand
+     * number of movies contained in the list
      */
-    spokenLanguages: Array<SupportedLanguage>;
+    count: number;
     /**
-     * a list of StreamProviders the user is currently subscribed to
+     * list of movies the user wants to watch
      */
-    subscribedStreamProviders: Array<SupportedProvider>;
+    watchlist: Array<Movie>;
 }
 

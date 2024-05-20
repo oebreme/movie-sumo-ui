@@ -9,10 +9,19 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { SupportedLanguage } from './supportedLanguage';
+import { MoviePreview } from './movie-preview.api';
 
 
-export interface SupportedLanguageList { 
-    languages: Array<SupportedLanguage>;
+export interface MovieSearchResultList { 
+    /**
+     * current page of the paginated result
+     */
+    page: number;
+    results: Array<MoviePreview>;
+    /**
+     * how many pages there are for this query
+     */
+    totalPages: number;
+    totalResults: number;
 }
 

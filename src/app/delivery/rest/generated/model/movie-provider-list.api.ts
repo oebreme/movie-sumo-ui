@@ -9,15 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { MovieDetails } from './movieDetails';
+import { MovieProvider } from './movie-provider.api';
 
 
-export interface Movie { 
-    movieId: string;
-    externalId: number;
-    title: string;
-    posterImageUrl: string;
-    genres: Array<string>;
-    details: MovieDetails;
+/**
+ * information about where this movie is available for streaming, renting or buying
+ */
+export interface MovieProviderList { 
+    providers: Array<MovieProvider>;
 }
 
