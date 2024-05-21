@@ -2,3 +2,65 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "kollektif", "Roboto", sans-serif;
+    color: white !important;
+  }
+
+  a {
+    transition: color 1s;
+    @apply text-xl;
+    @apply font-bold;
+  }
+
+  a:hover {
+    transition: color 0.5s;
+    @apply text-[#F69159];
+  }
+
+  a::after {
+
+    display: block;
+    opacity: 0;
+    content: '';
+    height: 4px;
+    background: #F69159;
+    box-shadow: inset -40px -20px 30px -25px #C43364;
+    border-radius: 2rem;
+
+  }
+
+  a:active::after {
+    opacity: 1;
+  }
+}
+
+@font-face {
+  font-family: 'Kollektif';
+  src: url('./assets/fonts/kollektif.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Kollektif';
+  src: url('./assets/fonts/kollektif-bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Kollektif';
+  src: url('./assets/fonts/kollektif-bolditalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Kollektif';
+  src: url('./assets/fonts/kollektif-italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}

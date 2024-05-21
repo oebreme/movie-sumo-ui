@@ -22,6 +22,7 @@ import {
   AuthHttpInterceptor,
   AuthModule
 } from '@auth0/auth0-angular';
+import { HeaderComponent } from "./presentation/header/header.component";
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {
     SearchModule,
     LibraryModule,
     SharedModule,
+    HeaderComponent,
   ],
   providers: [
     {
