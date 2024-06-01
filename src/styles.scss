@@ -75,3 +75,9 @@
   @apply from-[#F69159];
   @apply to-[#C43364];
 }
+
+.text-main-gradient {
+  background-image: linear-gradient(to right, #F69159, #C43364);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
