@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "jest",
     "pregenerate:api": "node download-contract.js",
-    "generate:api": "openapi-generator-cli generate --global-property models -g typescript-angular -i src/api/api.yaml -o src/app/delivery/rest/generated -c openapi-generator.config.yml"
+    "generate:api": "openapi-generator-cli generate --global-property models -g typescript-angular -i src/api/api.yaml -o src/app/delivery/rest/generated -c openapi-generator.config.yml",
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -32,14 +33,22 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.2.1",
+    "@angular-eslint/builder": "17.5.2",
+    "@angular-eslint/eslint-plugin": "17.5.2",
+    "@angular-eslint/eslint-plugin-template": "17.5.2",
+    "@angular-eslint/schematics": "17.5.2",
+    "@angular-eslint/template-parser": "17.5.2",
     "@angular/cli": "^17.2.1",
     "@angular/compiler-cli": "^17.2.2",
+    "@testing-library/angular": "^15.2.0",
+    "@typescript-eslint/eslint-plugin": "7.11.0",
+    "@typescript-eslint/parser": "7.11.0",
     "autoprefixer": "^10.4.16",
     "daisyui": "^4.7.2",
+    "eslint": "^8.57.0",
     "postcss": "^8.4.35",
     "postcss-scss": "^4.0.9",
     "tailwindcss": "^3.4.1",
-    "typescript": "~5.3.3",
-    "@testing-library/angular": "^15.2.0"
+    "typescript": "~5.3.3"
   }
 }

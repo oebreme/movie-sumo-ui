@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
+import { NgTemplateOutlet } from "@angular/common";
 
 @Component({
   selector: 'moviesumo-header',
   standalone: true,
-  imports: [],
+  imports: [
+    NgTemplateOutlet
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

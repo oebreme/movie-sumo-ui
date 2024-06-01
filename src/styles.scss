@@ -61,3 +61,17 @@
   font-weight: normal;
   font-style: italic;
 }
+
+.bg-base-alt {
+  @apply bg-[#202126];
+}
+
+.bg-base-alt-white {
+  @apply bg-[#F9FAFB];
+}
+
+.main-gradient {
+  @apply bg-gradient-to-r;
+  @apply from-[#F69159];
+  @apply to-[#C43364];
+}
