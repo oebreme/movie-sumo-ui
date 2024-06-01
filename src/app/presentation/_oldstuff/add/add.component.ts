@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchService } from "../../delivery/rest/search/search.service";
+import { SearchService } from "../../../delivery/rest/search/search.service";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({

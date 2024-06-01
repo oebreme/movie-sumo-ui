@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {RegisterUserService} from "../../delivery/rest/user/register-user.service";
+import {RegisterUserService} from "../../../delivery/rest/user/register-user.service";
 
 @Component({
   selector: 'app-home',
