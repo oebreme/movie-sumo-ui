@@ -20,7 +20,6 @@
   }
 
   a::after {
-
     display: block;
     opacity: 0;
     content: '';
@@ -28,7 +27,6 @@
     background: #F69159;
     box-shadow: inset -40px -20px 30px -25px #C43364;
     border-radius: 2rem;
-
   }
 
   a:active::after {
