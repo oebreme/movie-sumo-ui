@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from "./presentation/login/login.component";
-import { HomeComponent } from "./presentation/home/home.component";
-import { NotFoundComponent } from "./presentation/not-found/not-found.component";
-import { ListComponent } from "./presentation/list/list.component";
 import { FavoritesComponent } from "./presentation/_oldstuff/favorites/favorites.component";
 import { AuthGuard } from "@auth0/auth0-angular";
 import { AddComponent } from "./presentation/_oldstuff/add/add.component";
-import { SearchComponent } from "./presentation/search/search.component";
-import { LibraryComponent } from "./presentation/library/library.component";
-import {LandingComponent} from "./presentation/landing/landing.component";
+import { LoginComponent } from "./presentation/_oldstuff/login/login.component";
+import { HomeComponent } from "./presentation/_oldstuff/home/home.component";
+import { SearchComponent } from "./presentation/_oldstuff/search/search.component";
+import { ListComponent } from "./presentation/_oldstuff/list/list.component";
+import { LibraryComponent } from "./presentation/_oldstuff/library/library.component";
+import { LandingComponent } from "./presentation/_oldstuff/landing/landing.component";
+import { NotFoundComponent } from "./presentation/_oldstuff/not-found/not-found.component";
 
 const routes: Routes = [
   {
