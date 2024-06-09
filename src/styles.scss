@@ -8,29 +8,30 @@
     font-family: "kollektif", "Roboto", sans-serif;
     color: white !important;
   }
+  moviesumo-header a {
+    & {
+      transition: color 1s;
+      @apply text-xl;
+    }
 
-  a {
-    transition: color 1s;
-    @apply text-xl;
-  }
+    &:hover {
+      transition: color 0.5s;
+      @apply text-[#F69159];
+    }
 
-  a:hover {
-    transition: color 0.5s;
-    @apply text-[#F69159];
-  }
+    &::after {
+      display: block;
+      opacity: 0;
+      content: '';
+      height: 4px;
+      background: #F69159;
+      box-shadow: inset -40px -20px 30px -25px #C43364;
+      border-radius: 2rem;
+    }
 
-  a::after {
-    display: block;
-    opacity: 0;
-    content: '';
-    height: 4px;
-    background: #F69159;
-    box-shadow: inset -40px -20px 30px -25px #C43364;
-    border-radius: 2rem;
-  }
-
-  a:active::after {
-    opacity: 1;
+    &:active::after {
+      opacity: 1;
+    }
   }
 }
 

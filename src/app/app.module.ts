@@ -52,6 +52,9 @@ import { HomeModule } from "./presentation/_oldstuff/home/home.module";
       multi: true,
     }
   ],
+  exports: [
+    AddComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
