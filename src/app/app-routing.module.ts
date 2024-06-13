@@ -10,7 +10,8 @@ import { ListComponent } from './presentation/_oldstuff/list/list.component';
 import { LibraryComponent } from './presentation/_oldstuff/library/library.component';
 import { LandingComponent } from './presentation/_oldstuff/landing/landing.component';
 import { NotFoundComponent } from './presentation/_oldstuff/not-found/not-found.component';
-import { LegalNoticeComponent } from './presentation/legal-notice/legal-notice.component';
+import { LegalNoticeComponent } from './presentation/footer/legal-notice/legal-notice.component';
+import { PrivacyPolicyComponent } from './presentation/footer/data-privacy/privacy-policy.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'legal',
     component: LegalNoticeComponent,
+  },
+  {
+    path: 'privacy-policy',
+    component: PrivacyPolicyComponent,
   },
   {
     path: 'home',
