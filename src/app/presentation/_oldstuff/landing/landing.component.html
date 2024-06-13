@@ -47,8 +47,10 @@
   <div class="flex flex-row lg:px-20 px-8 lg:min-h-[80vh] pt-16 lg:pt-0 ">
 
 
-    <div class="px-96 lg:flex justify-center hidden bg-gray-700 grow">
-
+    <div class="lg:flex justify-center items-center hidden grow">
+      <div>
+        <img src="./assets/img/emoji-highres-cut-onlyface.png" width="500" height="500"/>
+      </div>
     </div>
 
 
@@ -84,25 +86,14 @@
 
 
       <div class="flex md:flex-row flex-col grow">
-        <div class="lg:text-2xl text-base text-white lg:mt-24 md:mt-12 md:mr-32 mt-1.5 text-wrap min-w-[300px]">
-          brought to you by...
-          <div class="flex flex-col items-center">
-
-            <moviesumo-personal-credit></moviesumo-personal-credit>
-
-          </div>
-        </div>
-
         <div class="lg:text-2xl text-base text-white lg:mt-24 mt-12 grow">
-          with help from...
+          brought to you with help from...
           <div class="flex lg:space-x-24 md:flex-row md:space-x-8 md:space-y-0 space-y-16 pb-64 md:pb-0 flex-col">
 
-            <moviesumo-tmdb-credit></moviesumo-tmdb-credit>
+            <moviesumo-tmdb-attribution></moviesumo-tmdb-attribution>
 
-            <moviesumo-justwatch-credit></moviesumo-justwatch-credit>
+            <moviesumo-justwatch-attribution></moviesumo-justwatch-attribution>
 
-            <!-- TODO -->
-            <moviesumo-contributor-credit class="hidden"></moviesumo-contributor-credit>
           </div>
         </div>
       </div>
