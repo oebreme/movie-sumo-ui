@@ -1,85 +1,67 @@
 <section>
   <div class="flex flex-row lg:px-20 px-8 lg:min-h-[80vh] pt-16 lg:pt-0">
-
     <div class="flex flex-col justify-center">
       <h2 class="lg:text-2xl text-lg font-bold text-main-gradient lg:min-w-[400px] min-h-[68px] flex items-center">
         SAVE, FIND, SHARE
       </h2>
-
-      <h1 class="lg:text-7xl md:text-5xl text-2xl font-bold text-white">your&nbsp;favorite <br class="md:block hidden">
+      <h1 class="lg:text-7xl md:text-5xl text-2xl font-bold text-white">
+        your&nbsp;favorite <br class="md:block hidden">
         movies
       </h1>
-
       <p class="lg:text-2xl text-base text-white lg:mt-24 md:mt-12 mt-1.5 text-wrap max-w-[500px]">
         settle movie nights without wrestling with your couch companion
       </p>
     </div>
-
     <div class="lg:flex justify-center items-center hidden grow">
       <div>
-        <img src="./assets/img/landing-page-demo.png" />
+        <img ngSrc="../../../../assets/img/app-preview.png" alt="preview image of the app" height="992" width="1600"/>
       </div>
     </div>
-
   </div>
 </section>
 
-
-
-
-
 <section>
   <div class="flex flex-row lg:px-20 px-8 lg:min-h-[80vh] pt-16 lg:pt-0 ">
-
-
     <div class="lg:flex justify-center items-center hidden grow">
       <div>
-        <img src="./assets/img/emoji-highres-cut-onlyface.png" width="600"/>
+        <a href="https://github.com/oebreme/" target="_blank">
+          <img ngSrc="../../../../assets/img/emoji.png" alt="thinking emoji" width="700" height="700"/>
+        </a>
       </div>
     </div>
-
-
     <div class="flex flex-col justify-center">
       <h2 class="lg:text-2xl text-lg font-bold text-main-gradient lg:min-w-[400px] min-h-[68px] flex items-center">
         HOW MUCH?
       </h2>
-
-      <h1 class="lg:text-7xl md:text-5xl text-2xl font-bold text-white">always&nbsp;free <br class="md:block hidden">
+      <h1 class="lg:text-7xl md:text-5xl text-2xl font-bold text-white">
+        always&nbsp;free <br class="md:block hidden">
         of charge
       </h1>
-
       <p class="lg:text-2xl text-base text-white lg:mt-24 md:mt-12 mt-1.5 text-wrap max-w-[500px]">
         the main goal of this project is practising my software-development skills
         from writing API&#8209;Contracts to designing UI&#8209;components
       </p>
     </div>
-
   </div>
 </section>
 
-
-
 <section>
   <div class="flex flex-row lg:px-20 px-8 lg:min-h-[80vh] pt-16 lg:pt-0 items-center">
-
     <div class="flex flex-col justify-center">
       <h2 class="lg:text-2xl text-lg font-bold text-main-gradient lg:min-w-[400px] min-h-[68px] flex items-center">
         ABOUT
       </h2>
-
       <h1 class="lg:text-7xl md:text-5xl text-2xl font-bold text-white">movieSumo</h1>
-
-
-      <div class="flex md:flex-row flex-col grow">
-        <div class="lg:text-2xl text-base text-white lg:mt-24 mt-12 grow">
-          brought to you with help from...
-          <div class="flex lg:space-x-24 md:flex-row md:space-x-8 md:space-y-0 space-y-16 pb-64 md:pb-0 flex-col">
-
-            <moviesumo-tmdb-attribution></moviesumo-tmdb-attribution>
-
-            <moviesumo-justwatch-attribution></moviesumo-justwatch-attribution>
-
-          </div>
+      <div class="text-gray-700">
+        <a routerLink="/legal">Legal notice</a>
+        &nbsp;
+        <a routerLink="/privacy-policy">Privacy policy</a>
+      </div>
+      <div class="lg:text-2xl text-base text-white lg:mt-24 mt-12 grow">
+        brought to you with help from...
+        <div class="flex flex-col justify-between md:flex-row pb-64 md:pb-0">
+          <moviesumo-tmdb-attribution></moviesumo-tmdb-attribution>
+          <moviesumo-justwatch-attribution></moviesumo-justwatch-attribution>
         </div>
       </div>
     </div>
