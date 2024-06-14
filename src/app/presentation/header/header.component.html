@@ -1,49 +1,50 @@
 <nav class="flex flex-row items-center md:justify-between lg:py-8 lg:px-20 py-4 px-8 fixed min-w-full bg-base-100 min-h-[80px]">
   <div class="flex flex-row items-center">
 
-    <div *ngTemplateOutlet="mainIcon"></div>
+    <a routerLink="/home">
+      <div *ngTemplateOutlet="mainIcon"></div>
+    </a>
 
     <div class="lg:px-12 md:px-4 px-0">
       <h1 class="xl:text-4xl lg:text-3xl md:text-2xl md:block hidden font-bold">movieSumo</h1>
     </div>
   </div>
 
-  @if (isLoggedIn) {
-  <!-- LOGGED IN -->
+  @if (auth.isAuthenticated$ | async) {
   <div>
     <div class="md:flex flex-row lg:space-x-12 xl:space-x-16 space-x-8 hidden">
-      <a href="/home">Home</a>
-      <a href="/search">Search</a>
-      <a href="/library">Library</a>
-      <a href="/about">About</a>
+      <a routerLink="/home">Home</a>
+      <a routerLink="/search">Search</a>
+      <a routerLink="/library">Library</a>
+      <a routerLink="/about">About</a>
     </div>
 
-    <div class="dropdown bg-base-200">
+    <div class="dropdown bg-base-200 md:hidden">
       <div tabindex="0" role="button" class="btn m-1">
-        <ng-container *ngTemplateOutlet="burgerMenuIcon"></ng-container></div>
+        <ng-container *ngTemplateOutlet="burgerMenuIcon"></ng-container>
+      </div>
       <ul class="dropdown-content z-[1] space-y-4 menu p-2 shadow bg-base-alt rounded-box w-40">
-        <div class="flex flex-row px-4 pt-2">
-          <a class="flex flex-col" href="/home">Home</a>
+        <div class="px-4 pt-2">
+          <a routerLink="/home">Home</a>
         </div>
-        <div class="flex flex-row px-4">
-          <a class="flex flex-col" href="/search">Search</a>
+        <div class="px-4">
+          <a routerLink="/search">Search</a>
         </div>
-        <div class="flex flex-row px-4">
-          <a class="flex flex-col" href="/library">Library</a>
+        <div class="px-4">
+          <a routerLink="/library">Library</a>
         </div>
-        <div class="flex flex-row px-4 pb-2">
-          <a class="flex flex-col" href="/about">About</a>
+        <div class="px-4 pb-2">
+          <a routerLink="/about">About</a>
         </div>
       </ul>
     </div>
   </div>
   } @else {
-    <!-- NOT LOGGED IN -->
     <div>
       <div class="md:flex flex-row lg:space-x-12 xl:space-x-16 space-x-8 hidden">
-        <a href="/home">Home</a>
-        <a href="/pricing">Pricing</a>
-        <a href="/about">About</a>
+        <a routerLink="/home">Home</a>
+        <a routerLink="/pricing">Pricing</a>
+        <a routerLink="/about">About</a>
       </div>
 
       <div class="dropdown bg-base-200 md:hidden">
@@ -51,38 +52,38 @@
           <ng-container *ngTemplateOutlet="burgerMenuIcon"></ng-container>
         </div>
         <ul class="dropdown-content z-[1] space-y-4 menu p-2 shadow bg-base-alt rounded-box w-40">
-          <div class="flex flex-row px-4 pt-2">
-            <a class="flex flex-col" href="/home">Home</a>
+          <div class="px-4 pt-2">
+            <a routerLink="/home">Home</a>
           </div>
-          <div class="flex flex-row px-4">
-            <a class="flex flex-col" href="/pricing">Pricing</a>
+          <div class="px-4">
+            <a routerLink="/pricing">Pricing</a>
           </div>
-          <div class="flex flex-row px-4 pb-2">
-            <a class="flex flex-col" href="/about">About</a>
+          <div class="px-4 pb-2">
+            <a routerLink="/about">About</a>
           </div>
         </ul>
       </div>
     </div>
   }
 
-
-  <!-- LOGGED IN -->
-  <!-- COMPONENT -->
-  @if (isLoggedIn) {
+  @if (auth.isAuthenticated$ | async) {
     <div class="avatar ml-auto md:ml-0">
       <div class="w-12 rounded-xl">
-        <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"/>
+        <img width="48" height="48" alt="user profile picture" [ngSrc]="this.user?.picture ?? ''" />
       </div>
     </div>
   } @else {
-
-  <!-- NOT LOGGED IN -->
     <div class="space-x-2 ml-auto md:ml-0">
-    <button class="btn bg-base-alt text-white">Register</button>
-    <button class="btn main-gradient text-white">Login</button>
+      <button class="btn bg-base-alt text-white"
+              (click)="auth.loginWithRedirect()">
+        Register
+      </button>
+      <button class="btn main-gradient text-white"
+              (click)="auth.loginWithRedirect()">
+        Login
+      </button>
     </div>
   }
-  <!-- COMPONENT -->
 </nav>
 
 <ng-template #mainIcon>
@@ -92,7 +93,6 @@
       d="M64.7462 0.0603485C59.824 0.408184 56.2614 2.23431 51.0638 7.06922C49.2395 8.75622 46.9677 11.3302 45.5565 13.3302C45.0229 14.0955 44.5066 14.7216 44.4378 14.7216C44.3689 14.7216 43.8526 14.0955 43.3191 13.3302C40.4966 9.34753 36.6758 5.6257 32.6486 2.8952C30.8587 1.69517 29.9121 1.27777 27.3994 0.5821C25.9537 0.199482 25.4201 0.147305 22.7525 0.129913C19.3276 0.112522 18.4327 0.286442 16.1265 1.39951C13.9579 2.44302 12.3918 3.83435 10.9289 6.00832C9.43156 8.25185 8.79477 10.5476 8.12356 16.1999C7.17698 24.3044 6.81556 26.5132 5.97225 29.9567C5.02567 33.7655 3.4423 37.5048 1.4803 40.6179C0.24114 42.5831 0.000192705 43.1745 0.000192705 44.2875C-0.0170178 45.9571 1.11888 47.4702 3.2874 48.6181C5.14614 49.6094 6.79835 49.9746 9.24225 49.9746C15.7306 49.9746 21.565 46.4267 24.3531 40.8092C25.5923 38.3048 26.1946 35.696 26.797 30.1828C27.2273 26.2871 27.4854 24.3914 27.6403 24.2349C27.8296 24.0609 28.2771 24.687 31.4783 29.5567C35.4195 35.5743 36.4005 36.7047 38.7755 37.9048C40.944 39.0178 42.6995 39.4005 45.0401 39.2787C47.2947 39.1744 48.8265 38.7396 50.5475 37.7135C52.6816 36.4613 53.6282 35.3656 57.2596 29.8524C61.0632 24.1131 61.0459 24.1305 61.2697 24.2696C61.459 24.3914 61.5278 24.8436 62.0958 29.9394C62.3195 32.0959 62.6809 34.6177 62.8703 35.5395C64.1955 42.1484 67.8785 46.7572 73.558 48.8963C76.5698 50.0268 80.4422 50.3225 83.0066 49.6268C85.7086 48.8963 87.8772 47.4354 88.6 45.8702C89.3573 44.2528 89.0991 43.1397 87.3092 40.3048C85.4505 37.3656 84.2457 34.6003 83.2475 31.0698C82.3354 27.8523 81.8363 24.774 80.752 15.6781C80.098 10.1823 79.5645 8.3562 77.9123 5.8518C75.0725 1.53865 70.7527 -0.374447 64.7462 0.0603485Z"
       fill="white"/>
   </svg>
-
   <svg class="block lg:hidden" width="57" height="32" viewBox="0 0 89 50" fill="none"
        xmlns="http://www.w3.org/2000/svg">
     <path

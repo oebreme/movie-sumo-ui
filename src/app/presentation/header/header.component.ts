@@ -1,17 +1,23 @@
-import { Component } from '@angular/core';
-import { NgTemplateOutlet } from "@angular/common";
+import { Component, OnInit } from '@angular/core';
+import { AsyncPipe, NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
+import { AuthService, User } from '@auth0/auth0-angular';
+import { take } from 'rxjs';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'moviesumo-header',
   standalone: true,
-  imports: [
-    NgTemplateOutlet
-  ],
+  imports: [NgTemplateOutlet, AsyncPipe, NgOptimizedImage, RouterLink],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+  user: User | null | undefined;
 
-  isLoggedIn: boolean = false;
+  constructor(protected readonly auth: AuthService) {}
 
+  ngOnInit(): void {
+    this.auth.user$.pipe(take(1)).subscribe((user) => {
+      this.user = user;
+    });
+  }
 }
