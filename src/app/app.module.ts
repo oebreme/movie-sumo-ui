@@ -18,6 +18,7 @@ import { LibraryModule } from './presentation/_oldstuff/library/library.module';
 import { SearchModule } from './presentation/_oldstuff/search/search.module';
 import { HomeModule } from './presentation/_oldstuff/home/home.module';
 import { FooterComponent } from './presentation/footer/footer.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { FooterComponent } from './presentation/footer/footer.component';
       useClass: AuthHttpInterceptor,
       multi: true,
     },
+    provideAnimationsAsync(),
   ],
   exports: [AddComponent],
   bootstrap: [AppComponent],
