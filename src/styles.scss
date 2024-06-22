@@ -8,17 +8,6 @@
     font-family: "kollektif", "Roboto", sans-serif;
     color: white !important;
   }
-  moviesumo-header a {
-    & {
-      transition: color 1s;
-      @apply text-xl;
-    }
-
-    &:hover {
-      transition: color 0.5s;
-      @apply text-[#F69159];
-    }
-  }
 }
 
 @font-face {
@@ -51,6 +40,10 @@
 
 .bg-base-alt {
   @apply bg-[#202126];
+}
+
+.bg-base-alt-darker {
+  @apply bg-[#18191F];
 }
 
 .bg-base-alt-white {
