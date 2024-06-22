@@ -1,0 +1,38 @@
+<div class="drawer drawer-end">
+  <input id="user-profile-drawer" type="checkbox" class="drawer-toggle"/>
+
+  <div class="drawer-content">
+    <label for="user-profile-drawer" class="drawer-button">
+    <moviesumo-user-profile-image [userImage]="user?.picture"></moviesumo-user-profile-image>
+
+    </label>
+  </div>
+  <div class="drawer-side">
+    <label for="user-profile-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+    <div class="menu p-4 w-80 min-h-full bg-base-alt text-base-content">
+      <div class="flex flex-col">
+        <div class="flex justify-between items-center">
+          <div class="text-xl"> {{ user?.email }} </div>
+          <moviesumo-user-profile-image
+            class="self-end"
+            [userImage]="user?.picture">
+          </moviesumo-user-profile-image>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Sidebar content here -->
+        <li><a>Sidebar Item 1</a></li>
+        <li><a>Sidebar Item 2</a></li>
+
+
+        <button
+          class="btn btn-error"
+          (click)="onLogout()">
+          Logout
+        </button>
+
+      </div>
+    </div>
+  </div>
+</div>
