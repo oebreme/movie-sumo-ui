@@ -1,8 +1,19 @@
-<div class="fixed bottom-0 min-w-full text-xs text-gray-700 bg-base-100">
-  <div class="flex justify-end items-center space-x-8 p-0.5">
-    <a routerLink="/legal">Legal notice</a>
-    <a routerLink="/privacy-policy">Privacy policy</a>
-    <a href="https://github.com/oebreme/movie-sumo-ui" target="_blank">GitHub</a>
-    <a>version-{{ version }}</a>
+@if(this.auth.isAuthenticated$ | async) {
+  <div class="fixed bottom-16 sm:bottom-0 min-w-full text-xs text-gray-700 bg-base-100">
+    <div class="flex justify-end items-center space-x-8 p-0.5">
+      <a routerLink="/legal">Legal notice</a>
+      <a routerLink="/privacy-policy">Privacy policy</a>
+      <a href="https://github.com/oebreme/movie-sumo-ui" target="_blank">GitHub</a>
+      <a>version-{{ version }}</a>
+    </div>
   </div>
-</div>
+} @else {
+  <div class="fixed bottom-0 min-w-full text-xs text-gray-700 bg-base-100">
+    <div class="flex justify-end items-center space-x-8 p-0.5">
+      <a routerLink="/legal">Legal notice</a>
+      <a routerLink="/privacy-policy">Privacy policy</a>
+      <a href="https://github.com/oebreme/movie-sumo-ui" target="_blank">GitHub</a>
+      <a>version-{{ version }}</a>
+    </div>
+  </div>
+}

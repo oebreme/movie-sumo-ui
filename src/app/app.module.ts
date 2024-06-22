@@ -18,6 +18,7 @@ import { LibraryModule } from './presentation/_oldstuff/library/library.module';
 import { SearchModule } from './presentation/_oldstuff/search/search.module';
 import { HomeModule } from './presentation/_oldstuff/home/home.module';
 import { FooterComponent } from './presentation/footer/footer.component';
+import { BottomNavigationComponent } from './presentation/bottom-navigation/bottom-navigation.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { FooterComponent } from './presentation/footer/footer.component';
     SharedModule,
     HeaderComponent,
     FooterComponent,
+    BottomNavigationComponent,
   ],
   providers: [
     {
