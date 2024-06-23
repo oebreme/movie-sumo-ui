@@ -3,5 +3,5 @@ export type TrendingMovieViewModel = {
   title: string;
   genres: string[];
   posterImageUrl: string;
-  releaseDate: string;
+  releaseDate: Date;
 };

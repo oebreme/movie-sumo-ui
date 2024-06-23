@@ -1,8 +1,8 @@
-<div class="poc-preview-card max-w-[60vw] min-w-[60vw] sm:max-w-[40vw] sm:min-w-[40vw] md:max-w-[30vw] md:min-w-[30vw] lg:max-w-[333px] lg:min-w-[333px]  carousel-item">
+<div class="poc-preview-card max-w-[60vw] min-w-[60vw] sm:max-w-[40vw] sm:min-w-[40vw] md:max-w-[30vw] md:min-w-[30vw] lg:max-w-[333px] lg:min-w-[333px] carousel-item">
   <img [src]="movie!.posterImageUrl" class="rounded-2xl" alt="movie poster"/>
-  <div class="absolute inset-0 bg-black bg-opacity-50 text-white opacity-0 transition-opacity duration-300 hover:opacity-100 rounded-2xl">
+  <div class="absolute inset-0 poc-preview-card-gradient bg-opacity-50 text-white opacity-0 transition-opacity duration-300 hover:opacity-100 rounded-2xl" >
 
-    <div class="flex flex-col min-h-full px-2 pb-4 ">
+    <div class="flex flex-col min-h-full pl-2 pr-4 pb-4">
       <div class="mt-auto">
 
 
@@ -22,11 +22,11 @@
             </button>
           </div>
         </div>
-        <div class="text-sm pl-1 pt-1 pb-4 sm:pt-2 md:pb-6 lg:pb-8"> {{ movie!.releaseDate }} </div>
+        <div class="text-sm pl-1 pt-1 pb-4 sm:pt-2 md:pb-6 lg:pb-8"> {{ movie!.releaseDate | date:'yyyy' }} </div>
 
         <div class="flex flex-row flex-wrap space-x-1 lg:space-x-1.5 items-start">
           @for (genre of movie!.genres; track $index) {
-            <div class="badge badge-xs border-0 bg-base-alt mb-0.5 sm:badge-sm lg:mb-3">{{ genre }}</div>
+            <div class="badge badge-xs border-0 bg-base-alt mb-0.5 sm:badge-sm lg:mb-1">{{ genre }}</div>
           }
         </div>
 

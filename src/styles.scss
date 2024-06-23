@@ -66,6 +66,16 @@
   @apply transform;
   @apply transition-transform;
   @apply duration-200;
+  @apply z-0;
+}
+
+.poc-preview-card-gradient {
+  background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 1),
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0));
 }
 
 

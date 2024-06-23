@@ -28,7 +28,7 @@ export class HomeComponent {
         title: data.title,
         genres: data.genres,
         posterImageUrl: data.posterImageUrl,
-        releaseDate: data.releaseDate,
+        releaseDate: new Date(data.releaseDate),
       };
     });
   }
