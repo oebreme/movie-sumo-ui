@@ -1,0 +1,14 @@
+<div class="poc-preview-card max-w-[60vw] min-w-[60vw] sm:max-w-[30vw] sm:min-w-[30vw] md:max-w-[20vw] md:min-w-[20vw] lg:max-w-[250px] lg:min-w-[250px] carousel-item">
+  <img [src]="movie!.posterImageUrl" class="rounded-2xl" alt="movie poster"/>
+  <div class="absolute inset-0 poc-preview-card-gradient bg-opacity-50 text-white opacity-0 transition-opacity duration-300 hover:opacity-100 rounded-2xl" >
+
+    <div class="flex flex-col min-h-full pb-4 items-center">
+      <div class="mt-auto">
+        <div class="badge badge-lg px-12 py-2 border-0 bg-white text-black">
+          {{ movie!.releaseDate | date:'d. MMMM' }}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
