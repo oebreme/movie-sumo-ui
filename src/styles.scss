@@ -61,3 +61,15 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.poc-preview-card {
+  @apply transform;
+  @apply transition-transform;
+  @apply duration-200;
+}
+
+
+.poc-preview-card:hover {
+  @apply z-10;
+  @apply scale-110;
+}

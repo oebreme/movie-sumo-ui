@@ -16,7 +16,6 @@ import { NotFoundComponent } from './presentation/_oldstuff/not-found/not-found.
 import { ListComponent } from './presentation/_oldstuff/list/list.component';
 import { LibraryModule } from './presentation/_oldstuff/library/library.module';
 import { SearchModule } from './presentation/_oldstuff/search/search.module';
-import { HomeModule } from './presentation/_oldstuff/home/home.module';
 import { FooterComponent } from './presentation/footer/footer.component';
 import { BottomNavigationComponent } from './presentation/bottom-navigation/bottom-navigation.component';
 
@@ -35,7 +34,6 @@ import { BottomNavigationComponent } from './presentation/bottom-navigation/bott
     AuthModule.forRoot(env.authConfig),
     FormsModule,
     HttpClientModule,
-    HomeModule,
     SearchModule,
     LibraryModule,
     SharedModule,
