@@ -21,7 +21,7 @@ import { SearchResultViewModel } from "./search-results/search-result.viewmodel"
 })
 export class SearchComponent {
 
-  someResults: SearchResultViewModel[] = [];
+  searchResults: SearchResultViewModel[] = [];
 
   constructor(private readonly http: HttpClient) {
   }
@@ -31,7 +31,7 @@ export class SearchComponent {
     this.http
       .get<MovieSearchResultListDto>(`http://localhost:8085/api/v3/search?queryTerm=${searchTerm}`)
       .subscribe((data) => {
-        this.someResults = this.mapFromApi(data);
+        this.searchResults = this.mapFromApi(data);
       });
   }
 
