@@ -8,7 +8,7 @@
       md:min-w-[450px]
       lg:min-w-[600px]
       xl:min-w-[700px]"
-      (searchTermChanged)="logStuff($event)"
+      (searchTermChanged)="findMoviesBySearchTerm($event)"
     ></moviesumo-search-bar>
   </div>
 
@@ -16,5 +16,8 @@
   <div class="divider"></div>
 
   <!-- search result -->
+  <moviesumo-search-results
+    [searchResults]=""
+  ></moviesumo-search-results>
 
 </div>

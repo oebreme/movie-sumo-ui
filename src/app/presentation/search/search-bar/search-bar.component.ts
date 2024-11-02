@@ -11,10 +11,11 @@ import { Subject, debounceTime } from "rxjs";
   templateUrl: './search-bar.component.html'
 })
 export class SearchBarComponent implements OnInit {
+
   searchTerm: string = '';
   inputChanged: Subject<void> = new Subject<void>();
 
-  @Output() searchTermChanged = new EventEmitter();
+  @Output() searchTermChanged = new EventEmitter<string>();
 
   public ngOnInit(): void {
     this.inputChanged.pipe(debounceTime(500))
