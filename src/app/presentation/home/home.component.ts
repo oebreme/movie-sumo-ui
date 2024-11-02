@@ -19,26 +19,25 @@ export class HomeComponent implements OnInit {
   isLoadingUpcomingMovies: boolean = true;
 
   constructor(private readonly http: HttpClient) {
-
   }
 
   ngOnInit(): void {
     this.http
       .get<MoviePreviewDto[]>('http://localhost:8085/api/v3/movies/trends')
       .subscribe((data) => {
-        this.trendingMovies = this.mapFromApi(data);
+        this.trendingMovies = this.mapTrendingMoviesFromApi(data);
         this.isLoadingTrendingMovies = false;
       });
 
     this.http
       .get<MoviePreviewDto[]>('http://localhost:8085/api/v3/movies/upcoming')
       .subscribe((data) => {
-        this.upcomingMovies = this.mapFromApiDifferent(data);
+        this.upcomingMovies = this.mapUpcomingMoviesFromApi(data);
         this.isLoadingUpcomingMovies = false;
       });
   }
 
-  private mapFromApi(dto: MoviePreviewDto[]): TrendingMovieViewModel[] {
+  private mapTrendingMoviesFromApi(dto: MoviePreviewDto[]): TrendingMovieViewModel[] {
     return dto.map((data: MoviePreviewDto) => {
       return {
         externalId: data.externalId,
@@ -50,7 +49,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  private mapFromApiDifferent(
+  private mapUpcomingMoviesFromApi(
     dto: MoviePreviewDto[],
   ): UpcomingMovieViewModel[] {
     return dto.map((data: MoviePreviewDto) => {
