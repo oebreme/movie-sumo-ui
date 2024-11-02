@@ -62,14 +62,14 @@
   -webkit-text-fill-color: transparent;
 }
 
-.poc-preview-card {
+.movie-preview-hover-card {
   @apply transform;
   @apply transition-transform;
   @apply duration-200;
   @apply z-0;
 }
 
-.poc-preview-card-gradient {
+.movie-preview-hover-card-gradient {
   background-image: linear-gradient(
       to top,
       rgba(0, 0, 0, 1),
@@ -79,7 +79,7 @@
 }
 
 
-.poc-preview-card:hover {
+.movie-preview-hover-card:hover {
   @apply z-10;
-  @apply scale-110;
+  @apply scale-105;
 }
