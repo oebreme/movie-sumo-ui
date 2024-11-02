@@ -3,10 +3,14 @@
     <span class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-main-gradient font-bold"> Home </span>
   </div>
 
-  <moviesumo-trending [trendingMovies]="something"></moviesumo-trending>
+  <moviesumo-trending [trendingMovies]="trendingMovies"
+                      [isLoadingTrendingMovies]="isLoadingTrendingMovies">
+  </moviesumo-trending>
 
   <div class="divider"></div>
 
-  <moviesumo-upcoming [upcomingMovies]="somethingDifferent"></moviesumo-upcoming>
+  <moviesumo-upcoming [upcomingMovies]="upcomingMovies"
+                      [isLoadingUpcomingMovies]="isLoadingUpcomingMovies">
+  </moviesumo-upcoming>
 
 </div>

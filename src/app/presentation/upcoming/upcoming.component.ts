@@ -10,6 +10,12 @@ import { UpcomingMovieComponent } from './upcoming-movie/upcoming-movie.componen
   templateUrl: './upcoming.component.html',
 })
 export class UpcomingComponent {
+  PLACEHOLDER_COUNT = Array.from({length: 20});
+
   @Input({ required: true })
   upcomingMovies!: UpcomingMovieViewModel[];
+
+  @Input({ required: true })
+  isLoadingUpcomingMovies!: boolean;
+  protected readonly Array = Array;
 }

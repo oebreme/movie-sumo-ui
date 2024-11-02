@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MoviePreviewDto } from '../../delivery/rest/movie/movie-preview.dto';
 import { TrendingMovieViewModel } from '../trending/trending-movie.viewmodel';
@@ -12,23 +12,31 @@ import { UpcomingMovieViewModel } from '../upcoming/upcoming-movie.viewmodel';
   imports: [TrendingComponent, UpcomingComponent],
   templateUrl: './home.component.html',
 })
-export class HomeComponent {
-  something: TrendingMovieViewModel[] = [];
-  somethingDifferent: UpcomingMovieViewModel[] = [];
+export class HomeComponent implements OnInit {
+  trendingMovies: TrendingMovieViewModel[] = [];
+  isLoadingTrendingMovies: boolean = true;
+  upcomingMovies: UpcomingMovieViewModel[] = [];
+  isLoadingUpcomingMovies: boolean = true;
 
   constructor(private readonly http: HttpClient) {
+
+  }
+
+  ngOnInit(): void {
     this.http
       .get<MoviePreviewDto[]>('http://localhost:8085/api/v3/movies/trends')
       .subscribe((data) => {
-        this.something = this.mapFromApi(data);
+        this.trendingMovies = this.mapFromApi(data);
+        this.isLoadingTrendingMovies = false;
       });
 
     this.http
       .get<MoviePreviewDto[]>('http://localhost:8085/api/v3/movies/upcoming')
       .subscribe((data) => {
-        this.somethingDifferent = this.mapFromApiDifferent(data);
+        this.upcomingMovies = this.mapFromApiDifferent(data);
+        this.isLoadingUpcomingMovies = false;
       });
-  }
+    }
 
   private mapFromApi(dto: MoviePreviewDto[]): TrendingMovieViewModel[] {
     return dto.map((data: MoviePreviewDto) => {

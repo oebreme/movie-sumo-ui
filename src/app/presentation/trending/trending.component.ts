@@ -9,6 +9,12 @@ import { TrendingMovieComponent } from './trending-movie/trending-movie.componen
   templateUrl: './trending.component.html',
 })
 export class TrendingComponent {
+  PLACEHOLDER_COUNT = Array.from({length: 20});
+
   @Input({ required: true })
   trendingMovies!: TrendingMovieViewModel[];
+
+  @Input({ required: true })
+  isLoadingTrendingMovies!: boolean;
+  protected readonly Array = Array;
 }

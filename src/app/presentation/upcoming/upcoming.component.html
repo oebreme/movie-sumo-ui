@@ -3,8 +3,22 @@
     <span class="text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white md:font-bold"> Upcoming </span>
   </div>
   <div class="carousel space-x-1 carousel-center max-w-[100vw] py-8 px-12">
-    @for (movie of upcomingMovies; track $index) {
-      <moviesumo-upcoming-movie [movie]="movie"></moviesumo-upcoming-movie>
+
+    @if (isLoadingUpcomingMovies) {
+      @for (el of PLACEHOLDER_COUNT; track $index) {
+        <div class="skeleton carousel-item bg-gray-900
+                    max-w-[60vw] min-w-[60vw]
+                    sm:max-w-[30vw] sm:min-w-[30vw]
+                    md:max-w-[20vw] md:min-w-[20vw]
+                    lg:max-w-[250px] lg:min-w-[250px]"
+        >
+          <img src="assets/img/transparent-placeholder-500x750.png" alt="placeholder while loading">
+        </div>
+      }
+    } @else {
+      @for (movie of upcomingMovies; track $index) {
+        <moviesumo-upcoming-movie [movie]="movie"></moviesumo-upcoming-movie>
+      }
     }
   </div>
 </div>
