@@ -5,7 +5,6 @@ import { environment as env } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FavoritesComponent } from './presentation/_oldstuff/favorites/favorites.component';
-import { AddComponent } from './presentation/_oldstuff/add/add.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -14,7 +13,6 @@ import { HeaderComponent } from './presentation/header/header.component';
 import { LoginComponent } from './presentation/_oldstuff/login/login.component';
 import { NotFoundComponent } from './presentation/_oldstuff/not-found/not-found.component';
 import { ListComponent } from './presentation/_oldstuff/list/list.component';
-import { LibraryModule } from './presentation/_oldstuff/library/library.module';
 import { FooterComponent } from './presentation/footer/footer.component';
 import { BottomNavigationComponent } from './presentation/bottom-navigation/bottom-navigation.component';
 
@@ -25,7 +23,6 @@ import { BottomNavigationComponent } from './presentation/bottom-navigation/bott
     NotFoundComponent,
     ListComponent,
     FavoritesComponent,
-    AddComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +30,6 @@ import { BottomNavigationComponent } from './presentation/bottom-navigation/bott
     AuthModule.forRoot(env.authConfig),
     FormsModule,
     HttpClientModule,
-    LibraryModule,
     SharedModule,
     HeaderComponent,
     FooterComponent,
@@ -46,7 +42,7 @@ import { BottomNavigationComponent } from './presentation/bottom-navigation/bott
       multi: true,
     },
   ],
-  exports: [AddComponent],
+  exports: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

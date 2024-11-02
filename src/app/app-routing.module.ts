@@ -2,16 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FavoritesComponent } from './presentation/_oldstuff/favorites/favorites.component';
 import { AuthGuard } from '@auth0/auth0-angular';
-import { AddComponent } from './presentation/_oldstuff/add/add.component';
 import { LoginComponent } from './presentation/_oldstuff/login/login.component';
 import { SearchComponent } from './presentation/search/search.component';
 import { ListComponent } from './presentation/_oldstuff/list/list.component';
-import { LibraryComponent } from './presentation/_oldstuff/library/library.component';
 import { LandingComponent } from './presentation/_oldstuff/landing/landing.component';
 import { NotFoundComponent } from './presentation/_oldstuff/not-found/not-found.component';
 import { LegalNoticeComponent } from './presentation/footer/legal-notice/legal-notice.component';
 import { PrivacyPolicyComponent } from './presentation/footer/data-privacy/privacy-policy.component';
 import { HomeComponent } from './presentation/home/home.component';
+import { LibraryComponent } from "./presentation/library/library.component";
 
 const routes: Routes = [
   {
@@ -42,11 +41,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: ':listRef/add',
-    component: AddComponent,
-    canActivate: [AuthGuard],
-  },
-  {
     path: 'list',
     component: ListComponent,
     canActivate: [AuthGuard],
@@ -54,11 +48,6 @@ const routes: Routes = [
   {
     path: 'list/:listRef',
     component: ListComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'list/:listRef/add',
-    component: AddComponent,
     canActivate: [AuthGuard],
   },
   {
