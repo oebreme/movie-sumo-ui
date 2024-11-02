@@ -4,7 +4,7 @@ import { FavoritesComponent } from './presentation/_oldstuff/favorites/favorites
 import { AuthGuard } from '@auth0/auth0-angular';
 import { AddComponent } from './presentation/_oldstuff/add/add.component';
 import { LoginComponent } from './presentation/_oldstuff/login/login.component';
-import { SearchComponent } from './presentation/_oldstuff/search/search.component';
+import { SearchComponent } from './presentation/search/search.component';
 import { ListComponent } from './presentation/_oldstuff/list/list.component';
 import { LibraryComponent } from './presentation/_oldstuff/library/library.component';
 import { LandingComponent } from './presentation/_oldstuff/landing/landing.component';
