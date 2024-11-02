@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MoviePreviewDto } from '../../delivery/rest/movie/movie-preview.dto';
-import { TrendingMovieViewModel } from '../trending/trending-movie.viewmodel';
-import { TrendingComponent } from '../trending/trending.component';
-import { UpcomingComponent } from '../upcoming/upcoming.component';
-import { UpcomingMovieViewModel } from '../upcoming/upcoming-movie.viewmodel';
+import { TrendingMovieViewModel } from "./trending/trending-movie.viewmodel";
+import { TrendingComponent } from "./trending/trending.component";
+import { UpcomingComponent } from "./upcoming/upcoming.component";
+import { UpcomingMovieViewModel } from "./upcoming/upcoming-movie.viewmodel";
 
 @Component({
   selector: 'moviesumo-home',
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
         this.upcomingMovies = this.mapFromApiDifferent(data);
         this.isLoadingUpcomingMovies = false;
       });
-    }
+  }
 
   private mapFromApi(dto: MoviePreviewDto[]): TrendingMovieViewModel[] {
     return dto.map((data: MoviePreviewDto) => {
