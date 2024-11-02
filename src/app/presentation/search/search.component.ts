@@ -14,5 +14,7 @@ import { SearchBarComponent } from "./search-bar/search-bar.component";
   templateUrl: './search.component.html'
 })
 export class SearchComponent {
-
+  public logStuff(term: string): void {
+    console.log(term);
+  }
 }
