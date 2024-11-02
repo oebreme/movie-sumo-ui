@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+// @ts-ignore
 import packageJson from '../../../../package.json';
 import { AuthService, User } from '@auth0/auth0-angular';
 import { take } from 'rxjs';
