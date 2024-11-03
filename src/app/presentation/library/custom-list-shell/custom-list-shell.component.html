@@ -1,0 +1,53 @@
+<div class="flex flex-col bg-amber-400 min-h-96 space-y-2">
+
+  <button class="btn main-gradient text-white self-end">Create new List</button>
+  <!-- single-list-card-container -->
+  @for(list of customMovieLists; track $index) {
+
+    <!-- single-list-card -->
+    <div class="flex bg-base-alt rounded-2xl
+        ">
+      <div
+        class="rounded-2xl main-gradient
+        max-w-[75px] min-w-[75px] max-h-[75px] min-h-[75px]
+        md:max-w-[100px] md:min-w-[100px] md:max-h-[100px] md:min-h-[100px]
+        lg:max-w-[125px] lg:min-w-[125px] lg:max-h-[125px] lg:min-h-[125px]
+      ">
+
+      </div>
+
+      <div class="flex flex-row w-full justify-between">
+        <div>
+          <div class="
+                    text-xl ml-2 mt-2
+                    sm:text-xl sm:ml-4 sm:mt-4
+                    md:text-2xl md:ml-8 md:mt-6
+                    lg:text-3xl
+            ">
+            title
+          </div>
+          <div class="
+                    text-sm ml-4 mt-1 text-sub-content
+                    sm:ml-6 sm:mt-2
+                    md:text-lg md:ml-10 md:mt-3
+            ">
+            111 movies
+          </div>
+        </div>
+
+        <div class="flex items-end m-4">
+          <button class="btn btn-sm md:btn-md ml-1 min-w-10 lg:min-w-20"
+                  (click)="onClickEditCustomList($index)"
+          >Edit</button>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  }
+
+  <!-- create-new-list-button -->
+
+</div>

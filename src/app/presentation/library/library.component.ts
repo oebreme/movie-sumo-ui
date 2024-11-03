@@ -4,6 +4,7 @@ import { SearchResultsComponent } from "../search/search-results/search-results.
 import { DatePipe } from "@angular/common";
 import { WatchlistCardComponent } from "./watchlist-card/watchlist-card.component";
 import { FavoriteCardComponent } from "./favorite-card/favorite-card.component";
+import { CustomListShellComponent } from "./custom-list-shell/custom-list-shell.component";
 
 @Component({
   selector: 'moviesumo-library',
@@ -13,7 +14,8 @@ import { FavoriteCardComponent } from "./favorite-card/favorite-card.component";
     SearchResultsComponent,
     DatePipe,
     WatchlistCardComponent,
-    FavoriteCardComponent
+    FavoriteCardComponent,
+    CustomListShellComponent
   ],
   templateUrl: './library.component.html'
 })
