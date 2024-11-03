@@ -15,6 +15,6 @@ export class SearchResultsComponent {
   searchResults!: SearchResultViewModel[];
 
   public setFallbackImageIfEmpty(e: string): string {
-    return e ? e : "assets/img/no-image-available-500x750.png";
+    return e || "assets/img/no-image-available-500x750.png";
   }
 }
